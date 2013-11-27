@@ -92,7 +92,7 @@ var CoachBoard = (function () {
         this._shapeFactory.CreateShape("arrow", new Vector(50, 50), new Vector(50, window.innerHeight - 100), "down").draw();
 
         var veld = JSON.parse(RaakStorage.getItem("veld"));
-        this._context.font = "20px Georgia";
+        this._context.font = "20px sans-serif";
         this._context.fillStyle = '#FFFFFF';
         this._context.fillText(veld.gameType.charAt(0).toUpperCase() + veld.gameType.slice(1), (window.innerWidth / 2) - 60, 30);
     };
