@@ -112,7 +112,7 @@ var CoachBoard = (function () {
         var veld = JSON.parse(RaakStorage.getItem("veld"));
         var width = prompt("Voer de breedte van het speelveld in.", veld.fieldWidth);
         var height = prompt("Voer de hoogte van het speelveld in.", veld.fieldHeight);
-        veld.fieldWidth = +height;
+        veld.fieldWidth = +width;
         veld.fieldHeight = +height;
         RaakStorage.storeItem("veld", JSON.stringify(veld));
         this.invalidate();
