@@ -20,6 +20,9 @@ function main()
     document.getElementById('freeLineButton').addEventListener('touchend', function(e){
         cb.setShapeType("freeLine");        
     });
+    document.getElementById('measurementButton').addEventListener('touchend', function(e){
+        cb.measurements();        
+    });
 }
 
 function initializeButtons()

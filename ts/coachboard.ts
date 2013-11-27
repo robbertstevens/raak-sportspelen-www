@@ -85,7 +85,8 @@ class CoachBoard {
 		this._objects.forEach(function(obj) {
 			obj.draw();
 		});	
-		this.drawArrow();	
+		this.drawArrow();
+		this.drawMeasurements();	
 	}
 	private clear(full: boolean) {
 		this._context.clearRect(0,0,this._canvas.width, this._canvas.height);
@@ -108,12 +109,34 @@ class CoachBoard {
 
 	private drawArrow()
 	{
-		this._shapeFactory.CreateShape("arrow",new Vector(50,50),new Vector(window.innerWidth - 50,50), "right").draw();
-		this._shapeFactory.CreateShape("arrow",new Vector(50,50),new Vector(50,window.innerHeight -100), "down").draw();
+		this._shapeFactory.CreateShape("arrow",new Vector(60,50),new Vector(window.innerWidth - 50,50), "right").draw();
+		this._shapeFactory.CreateShape("arrow",new Vector(60,50),new Vector(60,window.innerHeight -100), "down").draw();
 
 		var veld = <PlayField>JSON.parse(RaakStorage.getItem("veld"));
 		this._context.font="20px sans-serif";
 		this._context.fillStyle = '#FFFFFF';
-		this._context.fillText(veld.gameType.charAt(0).toUpperCase() + veld.gameType.slice(1),(window.innerWidth / 2) - 60,30);		
+		this._context.fillText(veld.gameType.charAt(0).toUpperCase() + veld.gameType.slice(1),(window.innerWidth / 2) - 60,25);		
+	}
+
+	private drawMeasurements()
+	{
+		var veld = <PlayField>JSON.parse(RaakStorage.getItem("veld"));
+
+		this._context.font="20px sans-serif";
+		this._context.fillStyle = '#FFFFFF';
+		this._context.fillText(veld.fieldWidth + " Meter",(window.innerWidth / 2) - 80,45);
+		this._context.fillText(veld.fieldHeight ,5, (window.innerHeight / 2) - 60);
+		this._context.fillText("Meter",5, (window.innerHeight / 2) - 35);
+	}
+	
+	public measurements()
+	{
+		var veld = <PlayField>JSON.parse(RaakStorage.getItem("veld"));			
+		var width = prompt("Voer de breedte van het speelveld in.", veld.fieldWidth);
+		var height = prompt("Voer de hoogte van het speelveld in.", veld.fieldHeight);
+		veld.fieldWidth = +height;
+		veld.fieldHeight = +height;
+		RaakStorage.storeItem("veld", JSON.stringify(veld));
+		this.invalidate();
 	}
 } 
