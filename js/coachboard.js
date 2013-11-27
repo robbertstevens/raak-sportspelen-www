@@ -88,8 +88,8 @@ var CoachBoard = (function () {
     };
 
     CoachBoard.prototype.drawArrow = function () {
-        this._shapeFactory.CreateShape("arrow", new Vector(50, 50), new Vector(1000, 50), "right").draw();
-        this._shapeFactory.CreateShape("arrow", new Vector(50, 50), new Vector(50, 700), "down").draw();
+        this._shapeFactory.CreateShape("arrow", new Vector(50, 50), new Vector(window.innerWidth - 50, 50), "right").draw();
+        this._shapeFactory.CreateShape("arrow", new Vector(50, 50), new Vector(50, window.innerHeight - 100), "down").draw();
     };
     return CoachBoard;
 })();

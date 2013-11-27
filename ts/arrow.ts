@@ -44,8 +44,9 @@ class Arrow implements IDrawable{
 				this.context.lineTo(this.to.x - 30, this.to.y - 30);
 			break;
 		}
-		
+		this.context.strokeStyle = '#FFFFFF';
 		this.context.stroke();
+		this.context.strokeStyle = '#000';
 		this.context.closePath();
 	}
 }
