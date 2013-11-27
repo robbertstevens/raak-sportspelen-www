@@ -5,7 +5,7 @@ function main()
     initializeButtons();    
     var canvas = document.getElementsByTagName("canvas")[0];
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 45;
+    canvas.height = window.innerHeight - 50;
     cb = new CoachBoard(canvas);
 
     document.getElementById('clearButton').addEventListener('touchend', function(e){
