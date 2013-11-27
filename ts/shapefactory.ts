@@ -5,7 +5,7 @@ class ShapeFactory {
 	constructor(context: CanvasRenderingContext2D){
 		this._context = context;
 	}
-	public CreateShape(shape: string, from: Vector, to: Vector) {		
+	public CreateShape(shape: string, from: Vector, to: Vector, orientation: string = "" ) {		
 		var s = null
 		switch (shape)
 		{
@@ -15,7 +15,10 @@ class ShapeFactory {
 		   		break;
 		  	case "rectangle" :
 			    s = new Rectangle(from, to, this._context);
-			    break;	
+			    break;
+			case "arrow" :
+			    s = new Arrow(from, to, this._context, orientation);
+			    break;    	
 		}
 		return s;
 	}

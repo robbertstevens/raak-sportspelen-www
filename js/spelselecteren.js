@@ -11,7 +11,7 @@ function main()
 			playfield = new PlayField(selected,"green");			
 		}else{
 			playfield = new PlayField(selected,"blue");			
-		}	
+		}
 		RaakStorage.storeItem("veld", JSON.stringify(playfield));			
 	});
 }

@@ -25,7 +25,7 @@ class CoachBoard {
 		this._canvas.addEventListener("touchstart", this.touchStart.bind(this), false);
 		this._canvas.addEventListener("touchmove", this.touchMove.bind(this), false);
 		this._canvas.addEventListener("touchend", this.touchEnd.bind(this), false);
-		
+		this.invalidate();
 		
 	}
 	private getContext2d() {
@@ -77,20 +77,22 @@ class CoachBoard {
 	} 
 	private invalidate() {
 		this.clear(false);
+
 		if(this._start != null && this._current != null && this._shapeType != "freeLine")
 		{
 			this._shapeFactory.CreateShape(this._shapeType,this._start,this._current).draw();	
-		}		
-
+		}				
 		this._objects.forEach(function(obj) {
 			obj.draw();
-		});		
+		});	
+		this.drawArrow();	
 	}
 	private clear(full: boolean) {
 		this._context.clearRect(0,0,this._canvas.width, this._canvas.height);
-		if ( full ) {
+		if ( full ) {			
 			this._objects = [];
 		}
+		this.drawArrow();
 	}
 
 	public setShapeType(shape: string){
@@ -101,6 +103,12 @@ class CoachBoard {
 	{
 		var veld = <PlayField>JSON.parse(RaakStorage.getItem("veld"));
 		console.log();
-	  this._canvas.style.backgroundColor = veld.fieldColor;
+	    this._canvas.style.backgroundColor = veld.fieldColor;
+	}
+
+	private drawArrow()
+	{
+		this._shapeFactory.CreateShape("arrow",new Vector(50,50),new Vector(1000,50), "right").draw();
+		this._shapeFactory.CreateShape("arrow",new Vector(50,50),new Vector(50,700), "down").draw();
 	}
 } 

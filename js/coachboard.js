@@ -13,6 +13,7 @@ var CoachBoard = (function () {
         this._canvas.addEventListener("touchstart", this.touchStart.bind(this), false);
         this._canvas.addEventListener("touchmove", this.touchMove.bind(this), false);
         this._canvas.addEventListener("touchend", this.touchEnd.bind(this), false);
+        this.invalidate();
     }
     CoachBoard.prototype.getContext2d = function () {
         return this._canvas.getContext("2d");
@@ -59,19 +60,21 @@ var CoachBoard = (function () {
     };
     CoachBoard.prototype.invalidate = function () {
         this.clear(false);
+
         if (this._start != null && this._current != null && this._shapeType != "freeLine") {
             this._shapeFactory.CreateShape(this._shapeType, this._start, this._current).draw();
         }
-
         this._objects.forEach(function (obj) {
             obj.draw();
         });
+        this.drawArrow();
     };
     CoachBoard.prototype.clear = function (full) {
         this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
         if (full) {
             this._objects = [];
         }
+        this.drawArrow();
     };
 
     CoachBoard.prototype.setShapeType = function (shape) {
@@ -82,6 +85,11 @@ var CoachBoard = (function () {
         var veld = JSON.parse(RaakStorage.getItem("veld"));
         console.log();
         this._canvas.style.backgroundColor = veld.fieldColor;
+    };
+
+    CoachBoard.prototype.drawArrow = function () {
+        this._shapeFactory.CreateShape("arrow", new Vector(50, 50), new Vector(1000, 50), "right").draw();
+        this._shapeFactory.CreateShape("arrow", new Vector(50, 50), new Vector(50, 700), "down").draw();
     };
     return CoachBoard;
 })();
