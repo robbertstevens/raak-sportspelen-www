@@ -21,8 +21,9 @@ function main()
         cb.setShapeType("freeLine");        
     });
     document.getElementById('measurementButton').addEventListener('touchend', function(e){
-        e.preventDefault();
-        cb.measurements();        
+        setTimeout(function(){
+            cb.measurements();   
+        }, 0);             
     });
 }
 
