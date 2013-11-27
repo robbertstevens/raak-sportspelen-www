@@ -76,6 +76,7 @@ var CoachBoard = (function () {
             this._objects = [];
         }
         this.drawArrow();
+        this.drawMeasurements();
     };
 
     CoachBoard.prototype.setShapeType = function (shape) {

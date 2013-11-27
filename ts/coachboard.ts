@@ -94,6 +94,7 @@ class CoachBoard {
 			this._objects = [];
 		}
 		this.drawArrow();
+		this.drawMeasurements();
 	}
 
 	public setShapeType(shape: string){

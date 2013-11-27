@@ -5,7 +5,7 @@ function main()
     initializeButtons();    
     var canvas = document.getElementsByTagName("canvas")[0];
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 43;
+    canvas.height = window.innerHeight - 45;
     cb = new CoachBoard(canvas);
 
     document.getElementById('clearButton').addEventListener('touchend', function(e){
@@ -20,7 +20,7 @@ function main()
     document.getElementById('freeLineButton').addEventListener('touchend', function(e){
         cb.setShapeType("freeLine");        
     });
-    document.getElementById('measurementButton').addEventListener('touchend', function(e){
+    document.getElementById('measurementButton').addEventListener('tap', function(e){
         cb.measurements();        
     });
 }
