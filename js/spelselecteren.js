@@ -4,8 +4,7 @@ function main()
 {
 	var cont = document.getElementById('nextButton');
 	cont.addEventListener('touchend', function(e){
-		var selected = document.getElementById('spel').options[document.getElementById('spel').selectedIndex].value;
-		alert(selected);
+		var selected = document.getElementById('spel').options[document.getElementById('spel').selectedIndex].value;		
 		var playfield;		
 		if(selected == "softbal" || selected == "voetbal")
 		{			
