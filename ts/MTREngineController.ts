@@ -1,7 +1,6 @@
 class MTREngineController {
 	private _playfield: PlayField;
-	private _inventory: Inventory;
-	private _objects: DrawableObject[];
+	private _inventory: Inventory;	
 
 	constructor() {}
 

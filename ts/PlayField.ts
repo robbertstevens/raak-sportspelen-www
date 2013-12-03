@@ -1,6 +1,7 @@
 class PlayField extends HTMLCanvasElement{
-	private objects: Material[];
+	private objects: DrawableObject[];
 	private game: GameType;
+	private canvas: HTMLCanvasElement;
 
 	constructor(game: GameType)
 	{
