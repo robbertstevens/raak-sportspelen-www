@@ -1,4 +1,4 @@
-class PlayField extends HTMLCanvasElement{
+class PlayField implements HTMLCanvasElement{
 	private objects: Material[];
 	private game: GameType;
 
@@ -11,7 +11,6 @@ class PlayField extends HTMLCanvasElement{
 	{
 
 	}
-
 	private onTouchStart(e: TouchEvent): void {}
 	private onTouchMove(e: TouchEvent): void {}
 	private onTouchEnd(e: TouchEvent): void {}

@@ -1,12 +1,15 @@
+/// <reference path="PlayField.ts" />
+/// <reference path="Inventory.ts" />
+/// <reference path="../shapes/DrawableObject.ts" />
+/// <reference path="TouchEvent.ts" />
 class MTREngineController {
 	private _playfield: PlayField;
 	private _inventory: Inventory;
-	private _objects: DrawableObject[];
+	private _objects: IDrawableObject[];
 
 	constructor() {}
 
 	public draw(): void {
-
 	}
 	private onTouchStart(e: TouchEvent): void 
 	{

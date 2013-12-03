@@ -1,5 +1,6 @@
 /// <reference path="Line.ts" />
 /// <reference path="../Vector.ts" />
+/// <reference path="../TouchEvent.ts" />
 var StraightLine = (function () {
     function StraightLine(f, t, c) {
         this.from = f;

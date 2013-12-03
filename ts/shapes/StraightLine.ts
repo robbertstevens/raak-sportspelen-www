@@ -1,9 +1,11 @@
 /// <reference path="Line.ts" />
 /// <reference path="../Vector.ts" />
+/// <reference path="../TouchEvent.ts" />
 class StraightLine implements ILine {
+	public dragging: boolean;
 	public from: Vector;
 	public to: Vector;
-	private _canvas: HTMLCanvasElement;
+	public canvas: HTMLCanvasElement;
 	constructor(f: Vector, t: Vector, c: HTMLCanvasElement ) {
 		this.from = f;
 		this.to = t;
