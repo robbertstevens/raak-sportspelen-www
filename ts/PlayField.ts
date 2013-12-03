@@ -1,6 +1,8 @@
-class PlayField implements HTMLCanvasElement{
-	private objects: Material[];
+
+class PlayField {
+	private objects: DrawableObject[];
 	private game: GameType;
+	private canvas: HTMLCanvasElement;
 
 	constructor(game: GameType)
 	{
