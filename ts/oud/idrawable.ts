@@ -5,4 +5,7 @@ interface IDrawable{
 	context: CanvasRenderingContext2D;
 
 	draw(): void;
+	ontouchStart(): void;
+	ontouchEnd(): void;
+	ontouchMove(): void;
 }

@@ -9,3 +9,4 @@
 /// <reference path="raakstorage.ts"/>
 /// <reference path="playfield.ts"/>
 /// <reference path="arrow.ts"/>
+/// <reference path="icon.ts" />
