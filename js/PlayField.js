@@ -1,3 +1,6 @@
+/// <reference path="shapes/DrawableObject.ts" />
+/// <reference path="TouchEvent.ts" />
+/// <reference path="GameType.ts" />
 var PlayField = (function () {
     function PlayField(game) {
         this.game = game;

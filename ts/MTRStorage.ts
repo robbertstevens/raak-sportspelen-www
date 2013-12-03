@@ -1,3 +1,5 @@
+
+/// <reference path="PlayField.ts" />
 class MTRStorage{
 	public storeItem(key: string, value: PlayField): void
 	{

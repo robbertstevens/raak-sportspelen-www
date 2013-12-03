@@ -1,6 +1,8 @@
-
+/// <reference path="shapes/DrawableObject.ts" />
+/// <reference path="TouchEvent.ts" />
+/// <reference path="GameType.ts" />
 class PlayField {
-	private objects: DrawableObject[];
+	private objects: IDrawableObject[];
 	private game: GameType;
 	private canvas: HTMLCanvasElement;
 

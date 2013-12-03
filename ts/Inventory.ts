@@ -1,5 +1,8 @@
-class Inventory extends HTMLCanvasElement{
-	private materials: DrawableObject[];
+/// <reference path="shapes/DrawableObject.ts" />
+/// <reference path="TouchEvent.ts" />
+
+class Inventory{
+	private materials: IDrawableObject[];
 	private canvas: HTMLCanvasElement;
 
 	private onTouchStart(e: TouchEvent): void {}
