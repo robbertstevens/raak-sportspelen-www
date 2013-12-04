@@ -1,6 +1,5 @@
 /// <reference path="PlayField.ts" />
 /// <reference path="Inventory.ts" />
-/// <reference path="../shapes/DrawableObject.ts" />
 /// <reference path="TouchEvent.ts" />
 var MTREngineController = (function () {
     function MTREngineController() {
