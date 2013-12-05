@@ -1,7 +1,7 @@
 /// <reference path="Line.ts" />
 /// <reference path="../Vector.ts" />
 /// <reference path="../TouchEvent.ts" />
-class StraightLine implements ILine {
+class Rectangle implements ILine{
 	public dragging: boolean;
 	public from: Vector;
 	public to: Vector;
@@ -11,11 +11,11 @@ class StraightLine implements ILine {
 		this.to = t;
 		this.canvas = c;
 	}
+
 	public draw(): void 
 	{
-		this.canvas.getContext("2d").beginPath();		
-		this.canvas.getContext("2d").moveTo(this.from.x, this.from.y);
-		this.canvas.getContext("2d").lineTo(this.to.x, this.to.y);
+		this.canvas.getContext("2d").beginPath();
+		this.canvas.getContext("2d").rect(this.from.x,this.from.y,(this.to.x -this.from.x), (this.to.y - this.from.y));
 		this.canvas.getContext("2d").stroke();
 		this.canvas.getContext("2d").closePath();
 	}
