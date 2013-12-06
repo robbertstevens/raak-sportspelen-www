@@ -25,24 +25,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	layer.drawScene();
 	switch(shapeToDraw) {
 		case "line": 
-			stage.on("touchstart", LineStart());
-			stage.on("touchmove", LineMove());
-			stage.on("touchend", LineEnd());
+			stage.on("touchstart", lineStart());
+			stage.on("touchmove", fixedLineMove());
+			stage.on("touchend", lineEnd());
 			break;
 		case "freeDraw": 
-			stage.on("touchstart", LineStart());
-			stage.on("touchmove", LineMove());
-			stage.on("touchend", LineEnd());
+			stage.on("touchstart", lineStart());
+			stage.on("touchmove", freeLineMove());
+			stage.on("touchend", lineEnd());
 			break;
 		case "rectangle": 
-			stage.on("touchstart", LineStart());
-			stage.on("touchmove", LineMove());
-			stage.on("touchend", LineEnd());
+			stage.on("touchstart", rectangleStart());
+			stage.on("touchmove", rectangleMove());
+			stage.on("touchend", rectangleEnd());
 			break;
 	}
 	document.getElementById('fixedLineButton').addEventListener("click", function(e) {
 		selectedTool = "line";
 	}, false);
-
+});
 
 
