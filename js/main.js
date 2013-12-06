@@ -70,8 +70,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	            var x = mousePos.x - group.getX();
 	            var y = mousePos.y - group.getY();
 
-	            //line.attrs.points.push({x: x, y: y});
-	            line.attrs.points[1] = { x: x, y: y});
+	            line.attrs.points.push({x: x, y: y});
+	            //line.attrs.points[1].x = x;
+	            //line.attrs.points[1].y = y;
 	            moving = true;
 	            layer.drawScene();
 	        }
