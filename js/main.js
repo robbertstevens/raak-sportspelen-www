@@ -11,8 +11,7 @@ var stage = new Kinetic.Stage({
         width: window.innerWidth,
         height: window.innerHeight
     });
-console.log(stage);
-	var background = new Kinetic.Rect({
+var background = new Kinetic.Rect({
 	    x: 0,
 	    y: 0,
 	    width: stage.getWidth(),
@@ -21,8 +20,8 @@ console.log(stage);
 	});
 
 	var layer = new Kinetic.Layer();
-
-	layer.add(background);
+	stage.setfi
+	//layer.add(background);
 	stage.add(layer);
 	layer.drawScene();
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
@@ -87,7 +86,7 @@ console.log(stage);
 	    	});  	
 	    	rect.on("dbltap", function(event) {
 	    		rect.setDraggable(!rect.getDraggable());
-	    		rect.moveToBottom();
+	    		
 	    		//console.log(rect.getDraggable())
 	    	});
 	    	layer.add(rect);
