@@ -85,6 +85,11 @@ console.log(stage);
 	    	rect.on('touchend', function(event) {	    		
 	    		dragging = false;
 	    	});  	
+	    	rect.on("dbltap", function(event) {
+	    		rect.setDraggable(!rect.getDraggable());
+	    		rect.moveToBottom();
+	    		//console.log(rect.getDraggable())
+	    	});
 	    	layer.add(rect);
 	    	moving = true; 
 		}
