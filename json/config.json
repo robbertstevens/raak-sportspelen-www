@@ -15,8 +15,8 @@
             ]
         },
         {
-            "game": "voetbal",
-            "color": "#00ff00",
+            "game": "handbal",
+            "color": "#0000ff",
             "materials": [
                 {
                     "name": "doel",
