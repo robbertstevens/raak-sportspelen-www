@@ -21,7 +21,7 @@ var background = new Kinetic.Rect({
 
 	var layer = new Kinetic.Layer();
 	stage.setfi
-	//layer.add(background);
+	layer.add(background);
 	stage.add(layer);
 	layer.drawScene();
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
