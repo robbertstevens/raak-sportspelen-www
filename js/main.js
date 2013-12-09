@@ -1,3 +1,20 @@
+/*
+{
+    "game": "voetbal",
+    "color": "#00ff00",
+    "materials": [
+        {
+            "name": "doel",
+            "url": "url/to/img"
+        },
+        {
+            "name": "bal",
+            "url": "url/to/img"
+        }
+    ]
+}
+*/
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
 	//KineticJS Draw Line
@@ -86,7 +103,8 @@ var background = new Kinetic.Rect({
 	    	});  	
 	    	rect.on("dbltap", function(event) {
 	    		rect.setDraggable(!rect.getDraggable());
-	    		
+	    		rect.moveToBottom();
+	    		rect.moveUp();
 	    		//console.log(rect.getDraggable())
 	    	});
 	    	layer.add(rect);
