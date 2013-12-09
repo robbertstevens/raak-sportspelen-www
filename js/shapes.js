@@ -1,3 +1,4 @@
+
 function rectangleStart(){
 	if(!dragging){
 		if (moving) {
