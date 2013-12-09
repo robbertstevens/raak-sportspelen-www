@@ -26,34 +26,43 @@ console.log(stage);
 	stage.add(layer);
 	layer.drawScene();
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
-		selectedTool = "line";switchTool();
+		selectedTool = "line";
+		console.log(selectedTool);
 	}, false);
 	document.getElementById('freeLineButton').addEventListener("touchend", function(e) {
-		selectedTool = "freeDraw";switchTool();
+		selectedTool = "freeDraw";
+		console.log(selectedTool);
 	}, false);
 	document.getElementById('rectangleButton').addEventListener("touchend", function(e) {
-		selectedTool = "rectangle";		switchTool();
-		
+		selectedTool = "rectangle";
+		console.log(selectedTool);
 	}, false);
-	function switchTool() {
+
+	stage.on("touchstart", function(e) {
 		switch(selectedTool) {
-			case "line": 
-				stage.on("touchstart", lineStart());
-				stage.on("touchmove", fixedLineMove());
-				stage.on("touchend", lineEnd());
-			break;
-			case "freeDraw": 
-				stage.on("touchstart", lineStart());
-				stage.on("touchmove", freeLineMove());
-				stage.on("touchend", lineEnd());
-				break;
-			case "rectangle": 
-				stage.on("touchstart", rectangleStart());
-				stage.on("touchmove", rectangleMove());
-				stage.on("touchend", rectangleEnd());
-			break;		
+			case "line": lineStart(); break;
+			case "freeDraw": lineStart(); break;
+			case "rectangle": rectangleStart(); break;
 		}
-	}
+		//console.log(e);
+	});
+	stage.on("touchmove", function(e) {
+		switch(selectedTool) {
+			case "line": fixedLineMove(); break;
+			case "freeDraw": freeLineMove(); break;
+			case "rectangle": rectangleMove(); break;
+		}
+		//console.log(e);
+	});
+	stage.on("touchend", function(e) {
+		switch(selectedTool) {
+			case "line": lineEnd(); break;
+			case "freeDraw": lineEnd(); break;
+			case "rectangle": rectangleEnd(); break;
+		}
+		//console.log(e);
+	});
+
 	function rectangleStart(){
 	if(!dragging){
 		if (moving) {
