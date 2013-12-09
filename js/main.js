@@ -1,21 +1,3 @@
-/*
-{
-    "game": "voetbal",
-    "color": "#00ff00",
-    "materials": [
-        {
-            "name": "doel",
-            "url": "url/to/img"
-        },
-        {
-            "name": "bal",
-            "url": "url/to/img"
-        }
-    ]
-}
-*/
-
-
 document.addEventListener("DOMContentLoaded", function (e) {
 	//KineticJS Draw Line
 	var selectedTool = null,
