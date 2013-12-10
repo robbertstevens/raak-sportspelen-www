@@ -1,4 +1,26 @@
 document.addEventListener("DOMContentLoaded", function (e) {
+	addGames();
+	loadGames();
+	
+	var cont = document.getElementById('nextButton');
+	cont.addEventListener('touchend', function(e){
+		var selected = document.getElementById('spel').options[document.getElementById('spel').selectedIndex].value;		
+		var coachboard = RaakStorage.getItem("coachboard");
+		RaakStorage.storeItem("field", [{game: coachboard[selected].game, color: coachboard[selected].color, materials: coachboard[selected].materials}]);		
+		
+	});
+});
+
+function loadGames(){
+	var coachboard = RaakStorage.getItem("coachboard");
+	
+	var select = document.getElementById("spel");
+	for(index in coachboard) {
+    	 select.options[select.options.length] = new Option(coachboard[index].game, index);
+	}
+}
+
+function addGames(){
 	spelen = [];
 	spelen.push({
 		game: "Softbal",
@@ -97,11 +119,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }]
 	});
 	RaakStorage.storeItem("coachboard",spelen);
-
-	var blaat = RaakStorage.getItem("coachboard");
-	
-	var select = document.getElementById("spel");
-	for(index in blaat) {
-    	 select.options[select.options.length] = new Option(blaat[index].game, index);
-	}
-});
+}
