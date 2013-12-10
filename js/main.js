@@ -3,26 +3,44 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	var selectedTool = null,
 		group =null,
 		shapeToDraw = "",
-		dragging = false, drawingObject;
-	var moving = false;
-var stage = new Kinetic.Stage({
+		dragging = false, drawingObject, moving = false;
+	var stage = new Kinetic.Stage({
         container: 'playfield',
         width: window.innerWidth,
         height: window.innerHeight
     });
-console.log(stage);
-var background = new Kinetic.Rect({
+	console.log(stage);
+	var background = new Kinetic.Rect({
 	    x: 0,
 	    y: 0,
 	    width: stage.getWidth(),
 	    height: stage.getHeight(),
-	    fill: "fff"
+	    fill: "white"
 	});
-
+	
+	var inventory = new Kinetic.Layer({
+		x: window.innerWidth - 380,
+		y: 0,
+		width: 480,
+		height: window.innerHeight,
+		// other properties... 
+	})
+	var inventoryBg = new Kinetic.Rect({
+		x: 0,
+		y: 0,
+		width: inventory.getWidth(),
+		height: inventory.getHeight(),
+		fill: 'grey',
+		stroke: 'black',
+		strokeWidth: 1,
+		// other properties... 
+	})
 	var layer = new Kinetic.Layer();
-	stage.setfi
+	
 	layer.add(background);
+	inventory.add(inventoryBg);
 	stage.add(layer);
+	stage.add(inventory);
 	layer.drawScene();
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "line";
