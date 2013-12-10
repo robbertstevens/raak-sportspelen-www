@@ -44,22 +44,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 	var imgObj = new Array();
-
+	var h = 0;
 	for (var p = 0; p < materials.length; p = p+1)
 	{
 		imgObj[p] = new Image();
 		imgObj[p].onload = function() {
+			console.log(h);
+
 			var thingy = new Kinetic.Image({
 				x:10,
 				y:10,
-				image: imgObj[p],
+				image: imgObj[h],
 				draggable: true
 			})
 			inventory.add(thingy);
-			
+			inventory.draw();
+			h++;
+
 		}
 		imgObj[p].src = materials[p].url;
-
 	}
 		
 		//this.application.destroy.method(nuke);
