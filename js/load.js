@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	cont.addEventListener('touchend', function(e){
 		var selected = document.getElementById('spel').options[document.getElementById('spel').selectedIndex].value;		
 		var coachboard = RaakStorage.getItem("coachboard");
-		RaakStorage.storeItem("field", [{game: coachboard[selected].game, color: coachboard[selected].color, materials: coachboard[selected].materials}]);		
+		RaakStorage.storeItem("field",  coachboard[selected]);		
 		
 	});
 });
@@ -27,11 +27,11 @@ function addGames(){
         color: "#00ff00",
         materials: [{
             name: "doel",
-            url: "url/to/img"
+            url: "./res/_algemeen/bank.png"
         },
         {
             name: "bal",
-            url: "url/to/img"
+            url: "./res/_algemeen/coach.png"
         }]
 	});
 	spelen.push({

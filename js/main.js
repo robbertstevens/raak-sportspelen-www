@@ -3,13 +3,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	var selectedTool = null,
 		group =null,
 		shapeToDraw = "",
-		dragging = false, drawingObject, moving = false;
-	var stage = new Kinetic.Stage({
+		dragging = false, drawingObject, moving = false,
+		materials = RaakStorage.getItem("field").materials,
+		stage = new Kinetic.Stage({
         container: 'playfield',
         width: window.innerWidth,
         height: window.innerHeight
     });
-	console.log(stage);
+	console.log(materials);
 	var background = new Kinetic.Rect({
 	    x: 0,
 	    y: 0,
@@ -40,7 +41,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	layer.add(background);
 	inventory.add(inventoryBg);
 	stage.add(layer);
+	
+	for (var i = 0; i < materials.length; i++)
+	{
+		var imageObj = new Image();
+      	imageObj.src = materials[i].url;
+      		console.log("hoi");
+      	var icon = new Kinetic.Image({
+      		image: imageObj,
+      		x: 10,
+      		y: 10,
+      		width: imageObj.width,
+      		height: imageObj.height
+      	})
+      	icon.setFill("red");
+      	console.log(imageObj);
+            	inventory.add(icon);
+    }
 	stage.add(inventory);
+
 	layer.drawScene();
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "line";
@@ -201,5 +220,3 @@ function lineEnd(){
 	layer.off('touchstart touchmove touchend');
 }
 });
-
-
