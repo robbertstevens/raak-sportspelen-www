@@ -10,6 +10,7 @@ var stage = new Kinetic.Stage({
         width: window.innerWidth,
         height: window.innerHeight
     });
+console.log(stage);
 var background = new Kinetic.Rect({
 	    x: 0,
 	    y: 0,
@@ -84,9 +85,9 @@ var background = new Kinetic.Rect({
 	    		dragging = false;
 	    	});  	
 	    	rect.on("dbltap", function(event) {
-	    		rect.setDraggable(!rect.getDraggable());
-	    		rect.moveToBottom();
-	    		rect.moveUp();
+	    		this.setDraggable(!this.getDraggable());
+	    		this.moveToBottom();
+	    		this.moveUp();
 	    		//console.log(rect.getDraggable())
 	    	});
 	    	layer.add(rect);
@@ -115,24 +116,25 @@ function lineStart(){
     } else {
         var mousePos = stage.pointerPos;
         //console.log(mousePos);
-        group = new Kinetic.Group({
+        /*group = new Kinetic.Group({
             x: mousePos.x,
             y: mousePos.y,
             draggable: true
         });
-                            console.log(group);
+        console.log(group);
         group.on("dragstart", function (evt) {
             this.moveToTop();
             document.body.style.cursor = 'move';
         });
         group.on("dragend", function (evt) {
             document.body.style.cursor = 'default';
-        });
+        });*/
         drawingObject = new Kinetic.Line({
-            points: [0, 0, 0, 0], //start point and end point are the same
+            points: [mousePos.x, mousePos.y,mousePos.x, mousePos.y], //start point and end point are the same
             stroke: '#000',
             strokeWidth: 2,
-            name: 'line'
+            name: 'line',
+            draggable: true
         });
         drawingObject.on("mouseover", function (evt) {
             document.body.style.cursor = 'pointer';
@@ -141,8 +143,8 @@ function lineStart(){
             document.body.style.cursor = 'default';
         });
 
-        group.add(drawingObject);
-        layer.add(group);
+       // group.add(drawingObject);
+        layer.add(drawingObject);
         moving = true;
     }
 }
@@ -150,8 +152,8 @@ function lineStart(){
 function freeLineMove(){
 	if (moving) {
         var mousePos = stage.pointerPos;
-        var x = mousePos.x - group.getX();
-        var y = mousePos.y - group.getY();
+        var x = mousePos.x;//- group.getX();
+        var y = mousePos.y;// - group.getY();
 
         drawingObject.attrs.points.push({x: x, y: y})
         
@@ -163,8 +165,8 @@ function freeLineMove(){
 function fixedLineMove(){
 	if (moving) {
         var mousePos = stage.pointerPos;
-        var x = mousePos.x - group.getX();
-        var y = mousePos.y - group.getY();
+        var x = mousePos.x;// - group.getX();
+        var y = mousePos.y;// - group.getY();
         
         drawingObject.attrs.points[1].x = x;
         drawingObject.attrs.points[1].y = y;
