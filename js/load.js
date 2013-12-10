@@ -27,11 +27,11 @@ function addGames(){
         color: "#00ff00",
         materials: [{
             name: "doel",
-            url: "./res/_algemeen/bank.png"
+            url: './res/_algemeen/bank.png'
         },
         {
             name: "bal",
-            url: "./res/_algemeen/coach.png"
+            url: './res/_algemeen/coach.png'
         }]
 	});
 	spelen.push({

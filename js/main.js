@@ -45,18 +45,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	for (var i = 0; i < materials.length; i++)
 	{
 		var imageObj = new Image();
-      	imageObj.src = materials[i].url;
-      		console.log("hoi");
-      	var icon = new Kinetic.Image({
+		imageObj.src = materials[i].url;
+		var icon = new Kinetic.Image({
       		image: imageObj,
       		x: 10,
       		y: 10,
       		width: imageObj.width,
-      		height: imageObj.height
-      	})
-      	icon.setFill("red");
+      		height: imageObj.height,
+      		fill: "black"
+      	})	
       	console.log(imageObj);
-            	inventory.add(icon);
+    	inventory.add(icon);
     }
 	stage.add(inventory);
 
