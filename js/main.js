@@ -41,25 +41,32 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	layer.add(background);
 	inventory.add(inventoryBg);
 	stage.add(layer);
-	
-	for (var i = 0; i < materials.length; i++)
-	{
-		var imageObj = new Image();
-		imageObj.src = materials[i].url;
-		var icon = new Kinetic.Image({
-      		image: imageObj,
-      		x: 10,
-      		y: 10,
-      		width: imageObj.width,
-      		height: imageObj.height,
-      		fill: "black"
-      	})	
-      	console.log(imageObj);
-    	inventory.add(icon);
-    }
-	stage.add(inventory);
 
-	layer.drawScene();
+
+	var imgObj = new Array();
+
+	for (var p = 0; p < materials.length; p = p+1)
+	{
+		imgObj[p] = new Image();
+		imgObj[p].onload = function() {
+			var thingy = new Kinetic.Image({
+				x:10,
+				y:10,
+				image: imgObj[p],
+				draggable: true
+			})
+			inventory.add(thingy);
+			
+		}
+		imgObj[p].src = materials[p].url;
+
+	}
+		
+		//this.application.destroy.method(nuke);
+    inventory.draw();
+	stage.add(inventory); 
+	console.log(inventory);
+
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "line";
 		console.log(selectedTool);
