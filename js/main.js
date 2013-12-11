@@ -56,17 +56,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				image: imgObj[h],
 				draggable: true,
 				scale: 0.3,
+				//offset: [imgObj[h].width / 2, imgObj[h].height / 2]
 				//fill: "red"
 			});
 			thingy.on("touchstart", function(e) {
 				var clone = this.clone(this.getAttrs());
+
+				var offset = [this.getImage().width / 2, this.getImage().height / 2]
+
+				this.move(offset.x *2,offset.y*2)
 				inventory.add(clone);
+				this.setAttrs({
+					offset: offset
+				});
 				this.off("touchstart");
 				selectedTool = null;
 				//inventory.draw();
 			});
+			thingy.on("touchend", function(e) {
+				
+				this.move(offset.x,offset.y)
+			})
 			thingy.on("dbltap", function(e) {
-				this.moveToTop();
+
+				this.rotateDeg(90);
 			});
 				
 			inventory.add(thingy);
