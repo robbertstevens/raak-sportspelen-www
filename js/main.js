@@ -59,7 +59,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				//fill: "red"
 			});
 			thingy.on("touchstart", function(e) {
+				var clone = this.clone(this.getAttrs());
+				inventory.add(clone);
+				this.off("touchstart");
 				selectedTool = null;
+				//inventory.draw();
+			});
+			thingy.on("dbltap", function(e) {
+				this.moveToTop();
 			});
 				
 			inventory.add(thingy);
