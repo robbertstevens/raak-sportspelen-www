@@ -49,14 +49,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	{
 		imgObj[p] = new Image();
 		imgObj[p].onload = function() {
-			console.log(h);
 
-			var thingy = new Kinetic.Image({
+		var thingy = new Kinetic.Image({
 				x:10,
 				y:10,
 				image: imgObj[h],
-				draggable: true
-			})
+				draggable: true,
+				scale: 0.3,
+				//fill: "red"
+			});
+			thingy.on("touchstart", function(e) {
+				selectedTool = null;
+			});
+				
 			inventory.add(thingy);
 			inventory.draw();
 			h++;
@@ -65,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		imgObj[p].src = materials[p].url;
 	}
 		
-		//this.application.destroy.method(nuke);
+	//this.application.destroy.method(nuke);
     inventory.draw();
 	stage.add(inventory); 
 	console.log(inventory);
