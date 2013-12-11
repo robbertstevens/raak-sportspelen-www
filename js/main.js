@@ -64,26 +64,41 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 				var offset = [this.getImage().width / 2, this.getImage().height / 2]
 
-				this.move(offset.x *2,offset.y*2)
+				//this.move(offset.x *2,offset.y*2)
 				inventory.add(clone);
+
 				this.setAttrs({
 					offset: offset
 				});
 				this.off("touchstart");
-				selectedTool = null;
-				//inventory.draw();
+				
+				
 			});
 			thingy.on("touchend", function(e) {
 				
-				this.move(offset.x,offset.y)
+				//this.move(offset.x,offset.y)
 			})
 			thingy.on("dbltap", function(e) {
 
 				this.rotateDeg(90);
+				stage.draw();
+			});	
+			thingy.on("dragstart", function(e){
+				selectedTool = null;
+				dragging = true;
+			});		
+			thingy.on("dragend", function(e){
+				console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
+				dragging = false;
+				if(this.attrs.x > 0)
+				{
+					this.destroy();
+					stage.draw();
+				}
 			});
 				
 			inventory.add(thingy);
-			inventory.draw();
+			stage.draw();
 			h++;
 
 		}
