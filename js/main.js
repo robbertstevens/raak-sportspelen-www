@@ -5,11 +5,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		shapeToDraw = "",
 		dragging = false, drawingObject, moving = false,
 		materials = RaakStorage.getItem("field").materials,
+		selectedElement,
 		stage = new Kinetic.Stage({
-        container: 'playfield',
-        width: window.innerWidth,
-        height: window.innerHeight
-    });
+	        container: 'playfield',
+	        width: window.innerWidth,
+	        height: window.innerHeight
+    	});
 	console.log(materials);
 	var background = new Kinetic.Rect({
 	    x: 0,
@@ -17,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	    width: stage.getWidth(),
 	    height: stage.getHeight(),
 	    fill: "white"
+	});
+	background.on("touchstart", function(e) {
+		dragging = false;
 	});
 	
 	var inventory = new Kinetic.Layer({
@@ -62,6 +66,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		selectedTool = "rectangle";
 		stage.draw();
 		console.log(selectedTool);
+	}, false);
+	document.getElementById('removeElementButton').addEventListener("touchend", function(e) {
+		selectedElement.remove();
+		this.classList.add("hide");
 	}, false);
 	document.getElementById('clearButton').addEventListener("touchend", function(e) {
 		layer.removeChildren();
@@ -114,18 +122,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		        strokeWidth: 3,
 		        draggable: true	        
 	    	});
-	    	rect.on('touchstart', function(event) {	    		
+	    	rect.on('touchstart', function(event) {
+	    		 
 	    		dragging = true;
-	    	});  
+
+	    		for (var i = layer.children.length - 1; i >= 0; i--) {
+			    	layer.children[i].setStroke('black');
+			    };
+			    if(this.getDraggable()){
+			        this.setStroke('red');  
+			    }
+			    document.getElementById("removeElementButton").classList.remove("hide");
+			    selectedElement = this;
+			});  
 	    	rect.on('touchend', function(event) {	    		
 	    		dragging = false;
 	    	});  	
 	    	rect.on("dbltap", function(event) {
 	    		this.setDraggable(!this.getDraggable());
+	    		this.setStroke('black');
 	    		this.moveToBottom();
 	    		this.moveUp();
-	    		//console.log(rect.getDraggable())
+
 	    	});
+	    	
 	    	layer.add(rect);
 	    	moving = true; 
 		}
@@ -220,32 +240,33 @@ function lineEnd(){
 }
 function drawInventory(){
 	var imgObj = new Array();
-	var h = 0;
+	var h = 0, placement = 10;
 	for (var p = 0; p < materials.length; p = p+1)
 	{
 		imgObj[p] = new Image();
 		imgObj[p].onload = function() {
-
+		var offset = [imgObj[h].width / 2, imgObj[h].height / 2];
+		placement += imgObj[h].height /3;
 		var thingy = new Kinetic.Image({
-				x:10,
-				y:10,
+				x:10 + (offset[0] /3),
+				y: placement,
 				image: imgObj[h],
 				draggable: true,
 				scale: 0.3,
-				//offset: [imgObj[h].width / 2, imgObj[h].height / 2]
+				offset: [imgObj[h].width / 2, imgObj[h].height / 2]
 				//fill: "red"
 			});
 			thingy.on("touchstart", function(e) {
 				var clone = this.clone(this.getAttrs());
 
-				var offset = [this.getImage().width / 2, this.getImage().height / 2]
+				//var offset = [this.getImage().width / 2, this.getImage().height / 2]
 
 				//this.move(offset.x *2,offset.y*2)
 				inventory.add(clone);
 
-				this.setAttrs({
+				/*this.setAttrs({
 					offset: offset
-				});
+				});*/
 				inventory.draw();
 				
 				

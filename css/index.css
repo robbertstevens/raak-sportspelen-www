@@ -23,6 +23,9 @@
     user-select: none;
     box-sizing: border-box;
 }
+.hide {
+    display: hidden;
+}
 ::-webkit-scrollbar {
       width: 15px;
 }
