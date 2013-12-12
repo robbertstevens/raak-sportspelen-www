@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	document.getElementById('removeElementButton').addEventListener("touchend", function(e) {
 		selectedElement.remove();
 		this.classList.add("hide");
+		stage.draw();
 	}, false);
 	document.getElementById('clearButton').addEventListener("touchend", function(e) {
 		layer.removeChildren();
