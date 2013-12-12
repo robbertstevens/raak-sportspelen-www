@@ -156,18 +156,19 @@ a.tapped {
     margin-top: 10px;
 }  
 
+.about {
+    position: absolute; 
+    bottom: 0; 
+    text-align: center;
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
 
-.clearButto {
-    padding: 20px;      
-    height: 20px;
-    line-height: 0px;
-    
-    text-decoration: none;
-    color: #444;
-    font-weight: bold;
-    text-shadow: 0 1px #FFF;
-    border-radius: 2px;
-    right:20px;
-    top:20px;
-        
-}      
+.linkAbout {
+    color: white;
+    background: none;
+    font-variant: small-caps;
+}

@@ -69,8 +69,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		selectedTool = "rectangle";
 		stage.draw();
 		console.log(selectedTool);
-	}, false);
-                          
+	}, false);                     
     document.getElementById('noToolButton').addEventListener("touchend", function(e) {
         selectedTool = null;
         stage.draw();
