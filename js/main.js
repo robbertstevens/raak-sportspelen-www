@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		stage = new Kinetic.Stage({
 	        container: 'playfield',
 	        width: window.innerWidth,
-	        height: window.innerHeight
+	        height: window.innerHeight -45
     	});
 	console.log(materials);
 	var background = new Kinetic.Rect({
@@ -196,7 +196,7 @@ function lineStart(){
         drawingObject = new Kinetic.Line({
             points: [mousePos.x, mousePos.y,mousePos.x, mousePos.y], //start point and end point are the same
             stroke: '#000',
-            strokeWidth: 2,
+            strokeWidth: 4,
             name: 'line',
             draggable: true
         });
