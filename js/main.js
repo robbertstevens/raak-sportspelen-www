@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	});
 	background.on("touchstart", function(e) {
 		dragging = false;
+		for (var i = layer.children.length - 1; i >= 0; i--) {
+			    	layer.children[i].setStroke('black');
+			    };
 	});
 	
 	var inventory = new Kinetic.Layer({
