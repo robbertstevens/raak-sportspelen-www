@@ -42,70 +42,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	inventory.add(inventoryBg);
 	stage.add(layer);
 
+	drawInventory();
 
-	var imgObj = new Array();
-	var h = 0;
-	for (var p = 0; p < materials.length; p = p+1)
-	{
-		imgObj[p] = new Image();
-		imgObj[p].onload = function() {
-
-		var thingy = new Kinetic.Image({
-				x:10,
-				y:10,
-				image: imgObj[h],
-				draggable: true,
-				scale: 0.3,
-				//offset: [imgObj[h].width / 2, imgObj[h].height / 2]
-				//fill: "red"
-			});
-			thingy.on("touchstart", function(e) {
-				var clone = this.clone(this.getAttrs());
-
-				var offset = [this.getImage().width / 2, this.getImage().height / 2]
-
-				//this.move(offset.x *2,offset.y*2)
-				inventory.add(clone);
-
-				this.setAttrs({
-					offset: offset
-				});
-				this.off("touchstart");
-				
-				
-			});
-			thingy.on("touchend", function(e) {
-				
-				//this.move(offset.x,offset.y)
-			})
-			thingy.on("dbltap", function(e) {
-
-				this.rotateDeg(90);
-				stage.draw();
-			});	
-			thingy.on("dragstart", function(e){
-				selectedTool = null;
-				dragging = true;
-			});		
-			thingy.on("dragend", function(e){
-				console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
-				dragging = false;
-				if(this.attrs.x > 0)
-				{
-					this.destroy();
-					stage.draw();
-				}
-			});
-				
-			inventory.add(thingy);
-			stage.draw();
-			h++;
-
-		}
-		imgObj[p].src = materials[p].url;
-	}
-		
-	//this.application.destroy.method(nuke);
     inventory.draw();
 	stage.add(inventory); 
 	console.log(inventory);
@@ -121,6 +59,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	document.getElementById('rectangleButton').addEventListener("touchend", function(e) {
 		selectedTool = "rectangle";
 		console.log(selectedTool);
+	}, false);
+	document.getElementById('clearButton').addEventListener("touchend", function(e) {
+		layer.removeChildren();
+		inventory.removeChildren();
+		layer.add(background);
+		inventory.add(inventoryBg);
+		layer.draw();
+		inventory.draw();
+		drawInventory();
 	}, false);
 
 	stage.on("touchstart", function(e) {
@@ -268,4 +215,70 @@ function lineEnd(){
 	layer.draw();
 	layer.off('touchstart touchmove touchend');
 }
+function drawInventory(){
+	var imgObj = new Array();
+	var h = 0;
+	for (var p = 0; p < materials.length; p = p+1)
+	{
+		imgObj[p] = new Image();
+		imgObj[p].onload = function() {
+
+		var thingy = new Kinetic.Image({
+				x:10,
+				y:10,
+				image: imgObj[h],
+				draggable: true,
+				scale: 0.3,
+				//offset: [imgObj[h].width / 2, imgObj[h].height / 2]
+				//fill: "red"
+			});
+			thingy.on("touchstart", function(e) {
+				var clone = this.clone(this.getAttrs());
+
+				var offset = [this.getImage().width / 2, this.getImage().height / 2]
+
+				//this.move(offset.x *2,offset.y*2)
+				inventory.add(clone);
+
+				this.setAttrs({
+					offset: offset
+				});
+				this.off("touchstart");
+				
+				
+			});
+			thingy.on("touchend", function(e) {
+				
+				//this.move(offset.x,offset.y)
+			})
+			thingy.on("dbltap", function(e) {
+
+				this.rotateDeg(90);
+				stage.draw();
+			});	
+			thingy.on("dragstart", function(e){
+				selectedTool = null;
+				dragging = true;
+			});		
+			thingy.on("dragend", function(e){
+				console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
+				dragging = false;
+				if(this.attrs.x > 0)
+				{
+					this.destroy();
+					stage.draw();
+				}
+			});
+				
+			inventory.add(thingy);
+			stage.draw();
+			h++;
+
+		}
+		imgObj[p].src = materials[p].url;
+	}
+		
+	//this.application.destroy.method(nuke);
+}
+
 });
