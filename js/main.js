@@ -69,10 +69,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	}, false);
                           
     document.getElementById('noToolButton').addEventListener("touchend", function(e) {
-                                                                selectedTool = null;
-                                                                                      stage.draw();
-                                                                                      console.log(selectedTool);
-                                                                                      }, false);
+        selectedTool = null;
+        stage.draw();
+        console.log(selectedTool);
+    }, false);
 	document.getElementById('removeElementButton').addEventListener("touchend", function(e) {
 		selectedElement.remove();
 		this.classList.add("hide");
