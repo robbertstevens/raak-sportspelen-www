@@ -50,14 +50,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "line";
+		stage.draw();
 		console.log(selectedTool);
 	}, false);
 	document.getElementById('freeLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "freeDraw";
+		stage.draw();
 		console.log(selectedTool);
 	}, false);
 	document.getElementById('rectangleButton').addEventListener("touchend", function(e) {
 		selectedTool = "rectangle";
+		stage.draw();
 		console.log(selectedTool);
 	}, false);
 	document.getElementById('clearButton').addEventListener("touchend", function(e) {
@@ -243,7 +246,7 @@ function drawInventory(){
 				this.setAttrs({
 					offset: offset
 				});
-				this.off("touchstart");
+				inventory.draw();
 				
 				
 			});
@@ -259,6 +262,7 @@ function drawInventory(){
 			thingy.on("dragstart", function(e){
 				selectedTool = null;
 				dragging = true;
+				this.off("touchstart");
 			});		
 			thingy.on("dragend", function(e){
 				console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
