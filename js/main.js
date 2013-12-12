@@ -193,6 +193,14 @@ function lineStart(){
             name: 'line',
             draggable: true
         });
+        drawingObject.on("touchstart", function(evt) {
+        	selectedElement = this;
+        	for (var i = layer.children.length - 1; i >= 0; i--) {
+			    layer.children[i].setStroke('black');
+			};
+			document.getElementById("removeElementButton").classList.remove("hide");
+			this.setStroke('red');
+        })
         drawingObject.on("mouseover", function (evt) {
             document.body.style.cursor = 'pointer';
         });
