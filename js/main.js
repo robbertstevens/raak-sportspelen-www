@@ -10,39 +10,54 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	        container: 'playfield',
 	        width: window.innerWidth,
 	        height: window.innerHeight -45
-    	});
-	console.log(materials);
-	var background = new Kinetic.Rect({
-	    x: 0,
-	    y: 0,
-	    width: stage.getWidth(),
-	    height: stage.getHeight(),
-	    fill: "white"
-	});
-	background.on("touchstart", function(e) {
-		dragging = false;
-		for (var i = layer.children.length - 1; i >= 0; i--) {
-			    	layer.children[i].setStroke('black');
-			    };
+    	}),
+		background = new Kinetic.Rect({
+		    x: 0,
+		    y: 0,
+		    width: stage.getWidth(),
+		    height: stage.getHeight(),
+		    fill: "white"
+		}),
+		inventory = new Kinetic.Layer({
+			x: window.innerWidth - 300,
+			y: 0,
+			width: 300,
+			height: window.innerHeight,
+			// other properties... 
+		}),
+		inventoryTween = new Kinetic.Tween({
+			node: inventory,
+			duration: 1,
+			x: window.innerWidth-50,
+			y: 0,
+			easing: Kinetic.Easings["EaseInOut"]
+		}),
+		inventoryBg = new Kinetic.Rect({
+			x: 0,
+			y: 0,
+			width: inventory.getWidth(),
+			height: inventory.getHeight(),
+			fill: 'grey',
+			stroke: 'black',
+			strokeWidth: 1 
+		})
+		background.on("touchstart", function(e) {
+			dragging = false;
+			for (var i = layer.children.length - 1; i >= 0; i--) {
+				    	layer.children[i].setStroke('black');
+			};
+		});
+	
+	inventory.on("dbltap", function(e) {
+		if ( inventoryTween.tween.getPosition() == 0) {
+			inventoryTween.tween.play();
+		} else {
+			inventoryTween.reverse();
+		}
+		console.log(inventoryTween);
 	});
 	
-	var inventory = new Kinetic.Layer({
-		x: window.innerWidth - 380,
-		y: 0,
-		width: 480,
-		height: window.innerHeight,
-		// other properties... 
-	})
-	var inventoryBg = new Kinetic.Rect({
-		x: 0,
-		y: 0,
-		width: inventory.getWidth(),
-		height: inventory.getHeight(),
-		fill: 'grey',
-		stroke: 'black',
-		strokeWidth: 1,
-		// other properties... 
-	})
+	
 	var layer = new Kinetic.Layer();
 	
 	layer.add(background);
@@ -53,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     inventory.draw();
 	stage.add(inventory); 
-	console.log(inventory);
+	console.log(layer);
 
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "line";
@@ -277,31 +292,27 @@ function drawInventory(){
 			});
 			thingy.on("touchstart", function(e) {
 				var clone = this.clone(this.getAttrs());
-
-				//var offset = [this.getImage().width / 2, this.getImage().height / 2]
-
-				//this.move(offset.x *2,offset.y*2)
 				inventory.add(clone);
-
-				/*this.setAttrs({
-					offset: offset
-				});*/
 				inventory.draw();
-				
-				
 			});
 			thingy.on("touchend", function(e) {
-				
-				//this.move(offset.x,offset.y)
+				var clone = this.clone(this.getAttrs());
+				clone.setPosition(stage.pointerPos.x, stage.pointerPos.y);
+
+				layer.add(clone);
+				this.remove();
+				console.log(inventory);
+				stage.draw();
 			})
 			thingy.on("dbltap", function(e) {
-
-				this.rotateDeg(90);
+				console.log(this)
+				this.rotateDeg(45);
 				stage.draw();
 			});	
 			thingy.on("dragstart", function(e){
 				selectedTool = null;
 				dragging = true;
+
 				this.off("touchstart");
 			});		
 			thingy.on("dragend", function(e){
