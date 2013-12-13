@@ -10,4 +10,3 @@ function showAbout(){
 }
 
 function alertDismissed(){};
-
