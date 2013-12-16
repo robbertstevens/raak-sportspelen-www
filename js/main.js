@@ -1,16 +1,17 @@
+var selectedElement = null,
+stage;
 document.addEventListener("DOMContentLoaded", function (e) {
 	//KineticJS Draw Line
+	stage = new Kinetic.Stage({
+	        container: 'playfield',
+	        width: window.innerWidth,
+	        height: window.innerHeight -45
+    	});
 	var selectedTool = null,
 		group =null,
 		shapeToDraw = "",
 		dragging = false, drawingObject, moving = false,
 		materials = RaakStorage.getItem("field").materials,
-		selectedElement,
-		stage = new Kinetic.Stage({
-	        container: 'playfield',
-	        width: window.innerWidth,
-	        height: window.innerHeight -45
-    	}),
 		background = new Kinetic.Rect({
 		    x: 0,
 		    y: 0,
@@ -137,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		    moving = false;
 		    layer.drawScene();
 		} else {   	
-
+			deSelect(layer);
 	    	rect = new Kinetic.Rect({
 		        x: stage.pointerPos.x,
 		        y: stage.pointerPos.y,
@@ -151,14 +152,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	    		 
 	    		dragging = true;
 
-	    		for (var i = layer.children.length - 1; i >= 0; i--) {
-			    	layer.children[i].setStroke('black');
-			    };
+	    		deSelect(layer);
+	    		//this.setStroke('red');
 			    if(this.getDraggable()){
 			        this.setStroke('red');  
 			    }
 			    document.getElementById("removeElementButton").classList.remove("hide");
 			    selectedElement = this;
+			    stage.draw();
 			});  
 	    	rect.on('touchend', function(event) {	    		
 	    		dragging = false;
@@ -168,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	    		this.setStroke('black');
 	    		this.moveToBottom();
 	    		this.moveUp();
+	    		stage.draw();
 
 	    	});
 	    	
@@ -196,6 +198,8 @@ function lineStart(){
         layer.drawScene();
     } else {
         var mousePos = stage.pointerPos;
+        //deSelect(layer);
+
         //console.log(mousePos);
         /*group = new Kinetic.Group({
             x: mousePos.x,
@@ -218,12 +222,14 @@ function lineStart(){
             draggable: true
         });
         drawingObject.on("touchstart", function(evt) {
-        	selectedElement = this;
-        	for (var i = layer.children.length - 1; i >= 0; i--) {
-			    layer.children[i].setStroke('black');
-			};
+        	
+        	deSelect(layer);
+        	
+			this.setStroke('red');  
+			
 			document.getElementById("removeElementButton").classList.remove("hide");
-			this.setStroke('red');
+			selectedElement = this;
+			stage.draw();
         })
         drawingObject.on("mouseover", function (evt) {
             document.body.style.cursor = 'pointer';
@@ -291,8 +297,16 @@ function drawInventory(){
 			});
 			thingy.on("touchstart", function(e) {
 				var clone = this.clone(this.getAttrs());
+				deSelect(layer);
+				//for (var i = layer.children.length - 1; i >= 0; i--) {
+			    //	layer.children[i].disableStroke();
+				//};
+				this.enableStroke();
+				this.setStroke('red');
+				stage.draw();
 				inventory.add(clone);
 				inventory.draw();
+
 			});
 			thingy.on("touchend", function(e) {
 				var clone = this.clone(this.getAttrs());
@@ -300,7 +314,7 @@ function drawInventory(){
 
 				layer.add(clone);
 				this.remove();
-				console.log(inventory);
+				selectedElement = clone;				
 				stage.draw();
 			})
 			thingy.on("dbltap", function(e) {
@@ -313,6 +327,16 @@ function drawInventory(){
 				dragging = true;
 
 				this.off("touchstart");
+				this.on("touchstart", function(e){
+					//selectedElement = this;
+					deSelect(layer);
+					//for (var i = layer.children.length - 1; i >= 0; i--) {
+			   		//	layer.children[i].disableStroke();
+					//};
+					this.enableStroke();
+					this.setStroke('red');
+				});
+
 			});		
 			thingy.on("dragend", function(e){
 				console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
@@ -336,3 +360,25 @@ function drawInventory(){
 }
 
 });
+
+function updateTextInput(val) {
+    if(selectedElement !=null)
+    {      	
+    	console.log(val);
+    	selectedElement.setRotationDeg(0);
+    	selectedElement.rotateDeg(val);
+    	stage.draw();
+    }
+}
+
+function deSelect(layer)
+{
+	for (var i = layer.children.length - 1; i >= 0; i--) {			    	
+		if(layer.children[i].className == "Image")
+		{
+			layer.children[i].disableStroke();			
+		}else{
+			layer.children[i].setStroke('black');
+		}			    	
+	};
+}
