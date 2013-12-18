@@ -7,37 +7,22 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <script type="text/javascript" src="js/cordova.js"></script>
         <script type="text/javascript" src="js/raakstorage.js"></script>
-        <script type="text/javascript" src="js/index.js"></script> 
-       <!--<script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/coachboard.js"></script>
-        <script type="text/javascript" src="js/shapefactory.js"></script>
-        <script type="text/javascript" src="js/vector.js"></script>
-        <script type="text/javascript" src="js/line.js"></script>
-        <script type="text/javascript" src="js/rectangle.js"></script>
-        <script type="text/javascript" src="js/freeline.js"></script>
-        <script type="text/javascript" src="js/playfield.js"></script>
-        <script type="text/javascript" src="js/arrow.js"></script>-->
-
+        <script type="text/javascript" src="js/index.js"></script>
         <title>Coachboard</title>
     </head>
-    <body>
-        <!--<button>Free hand</button>
-        <button>Line</button>-->
-        <a href="spelselecteren.html" class="button backButton canvasButton"><img src="img/back-25.png"></a>
-        <a href="#" id="fixedLineButton" class="button"><img src="img/line-25.png" /></a>
-        <a href="#" id="rectangleButton" class="button"><img src="img/rectangle-25.png"></a>
-        <a href="#" id="freeLineButton" class="button"><img src="img/edit-25.png"></a>
-        <a href="#" id="noToolButton" class="button"><img src="img/one_finger-25.png"></a>
-        <a href="#" id="clearButton" class="button"><img src="img/document-25.png"></a>
+        <div class="menu">
+            <a href="spelselecteren.html" class="button backButton canvasButton"><img src="img/back-25.png"></a>
+            <a href="#" id="fixedLineButton" class="button"><img src="img/line-25.png" /></a>
+            <a href="#" id="rectangleButton" class="button"><img src="img/rectangle-25.png"></a>
+            <a href="#" id="freeLineButton" class="button"><img src="img/edit-25.png"></a>
+            <a href="#" id="noToolButton" class="button"><img src="img/one_finger-25.png"></a>
+            <a href="#" id="clearButton" class="button"><img src="img/document-25.png"></a>
 
-        <a href="#" id="removeElementButton" class="button hide"><img src="img/delete_sign-25.png"></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" id="measurementButton" class="button"><img src="img/resize-25.png"></a>
-        <a href="#" id="saveButton" class="button"><img src="img/save_as-25.png"></a>
-        <input type="range" name="rangeInput" id="rangeInput" min="0" max="360" value="0" onchange="updateTextInput(this.value);">
-        <!--<a href="#" id="lineTool" class="button lineTool">LineTool</a>
-        <a href="#" id="rectTool" class="button rectTool">Rect</a>-->
-        <!--<canvas id="playfield"></canvas>
-        <canvas id="inventory"></canvas>-->
+            <a href="#" id="removeElementButton" class="button hide"><img src="img/delete_sign-25.png"></a>
+            <a href="#" id="measurementButton" class="button"><img src="img/resize-25.png"></a>
+            <a href="#" id="saveButton" class="button"><img src="img/save_as-25.png"></a>
+            <input type="range" name="rangeInput" id="rangeInput" min="0" max="360" value="0" onchange="updateTextInput(this.value);">
+        </div>
         <div id="playfield"></div>
 
         <script src="js/kinectic.js"></script>

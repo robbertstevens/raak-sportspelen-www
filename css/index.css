@@ -26,6 +26,20 @@
 .hide {
     display: hidden;
 }
+input[type=range] {
+    -webkit-appearance: none;
+    //background-color: silver;
+    width: 200px;
+    line-height:30px;
+    vertical-align: center;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #666;
+    opacity: 0.5;
+    width: 20px;
+    height: 30px;
+}
 ::-webkit-scrollbar {
       width: 15px;
 }
