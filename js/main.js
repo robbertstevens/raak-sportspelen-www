@@ -1,5 +1,8 @@
 var selectedElement = null,
-	stage;
+	stage,
+	recording = false,
+	recMovement = [],
+	startPositions = [];
 document.addEventListener("DOMContentLoaded", function (e) {
 	//KineticJS Draw Line
 	stage = new Kinetic.Stage({
@@ -91,11 +94,93 @@ document.addEventListener("DOMContentLoaded", function (e) {
         console.log(selectedTool);
     }, false);
 	document.getElementById('removeElementButton').addEventListener("touchend", function(e) {
+		var sele = null;
+		for (var j = startPositions.length - 1; j >= 0; j--) {
+			if(startPositions[j].id == selectedElement._id)
+			{
+				sele = startPositions[j];
+			}
+		};
+
+		var i = startPositions.indexOf(sele);		
+		if(i != -1){
+			startPositions.splice(i, 1);// delete entry in start positions
+		}
+
+		for(var k = recMovement.length - 1; k >= 0; k--) {// delete entries in recorded movement
+		    if(recMovement[k].id === selectedElement._id) {
+		       recMovement.splice(k, 1);
+		    }
+		}
+		
 		selectedElement.remove();
 		this.classList.add("hide");
 		stage.draw();
 	}, false);
-                          
+
+	document.getElementById('recordButton').addEventListener("touchend", function(e) {
+		recording = true;
+
+		for (var i = layer.children.length - 1; i >= 0; i--) {
+			if(layer.children[i].className == "Image"){
+				startPositions.push({
+					id: layer.children[i]._id,
+					x: layer.children[i].getX(),
+					y: layer.children[i].getY(),
+					rot: layer.children[i].getRotation()
+				});
+			}
+		};	
+		console.log(startPositions);	
+	}, false);
+	document.getElementById('playButton').addEventListener("touchend", function(e) {
+		recording = false;
+		for (var b = layer.children.length - 1; b >= 0; b--) {
+			for (var c = startPositions.length - 1; c >= 0; c--) {
+				if(startPositions[c].id == layer.children[b]._id)
+				{
+					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);
+					layer.children[b].setRotationDeg(startPositions[c].rot);					
+				}
+			};
+		};
+		stage.draw();
+		var i = 0;
+		
+		var move = setInterval(function() {
+					if(i < recMovement.length)
+					{
+						var node = null;
+						for (var a = layer.children.length - 1; a >= 0; a--) {
+							if(layer.children[a]._id == recMovement[i].id)
+							{
+								node = layer.children[a];
+							}					
+						};
+						node.setPosition(recMovement[i].x, recMovement[i].y);								
+						node.setRotationDeg(recMovement[i].rot);				
+						stage.draw();					
+						i++;
+						console.log(a);
+					}else{
+						clearInterval(move);
+					}
+		},8);		
+	}, false);
+    
+	document.getElementById('resetButton').addEventListener("touchend", function(e) {
+		recording = false;
+		for (var b = layer.children.length - 1; b >= 0; b--) {
+			for (var c = startPositions.length - 1; c >= 0; c--) {
+				if(startPositions[c].id == layer.children[b]._id)
+				{
+					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);					
+				}
+			};
+		};
+		stage.draw();
+	}, false);
+
 	document.getElementById('clearButton').addEventListener("touchend", function(e) {
 		layer.removeChildren();
 		inventory.removeChildren();
@@ -374,6 +459,17 @@ function createShape(img, pos) {
 		this.enableStroke();
 		this.setStroke("red");
 		stage.draw();
-	})
+	});
+	s.on("dragmove", function(e){
+		if(recording){
+			recMovement.push({
+				id: this._id,
+				x: this.getX(),
+				y: this.getY(),
+				rot: this.getRotationDeg()
+			});
+			console.log(recMovement);			
+		}
+	});
 	return s;
 }
