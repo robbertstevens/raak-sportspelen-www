@@ -119,22 +119,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	}, false);
 
 	document.getElementById('recordButton').addEventListener("touchend", function(e) {
-		recording = true;
-
-		for (var i = layer.children.length - 1; i >= 0; i--) {
-			if(layer.children[i].className == "Image"){
-				startPositions.push({
-					id: layer.children[i]._id,
-					x: layer.children[i].getX(),
-					y: layer.children[i].getY(),
-					rot: layer.children[i].getRotation()
-				});
-			}
-		};	
-		console.log(startPositions);	
+		recording = !recording;
+		this.classList.toggle("recBlink");
+		if (recording) {
+			for (var i = layer.children.length - 1; i >= 0; i--) {
+				if(layer.children[i].className == "Image"){
+					startPositions.push({
+						id: layer.children[i]._id,
+						x: layer.children[i].getX(),
+						y: layer.children[i].getY(),
+						rot: layer.children[i].getRotation()
+					});
+				}
+			};	
+			console.log(startPositions);	
+		}
 	}, false);
 	document.getElementById('playButton').addEventListener("touchend", function(e) {
 		recording = false;
+		document.getElementById('recordButton').classList.remove("recBlink");
+		this.classList.toggle("playBlink");
 		for (var b = layer.children.length - 1; b >= 0; b--) {
 			for (var c = startPositions.length - 1; c >= 0; c--) {
 				if(startPositions[c].id == layer.children[b]._id)
@@ -164,8 +168,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 						console.log(a);
 					}else{
 						clearInterval(move);
+						document.getElementById('playButton').classList.toggle("playBlink");
 					}
-		},8);		
+		},10);	
+		
 	}, false);
     
 	document.getElementById('resetButton').addEventListener("touchend", function(e) {

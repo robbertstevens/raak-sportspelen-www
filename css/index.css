@@ -26,6 +26,21 @@
 .hide {
     display: none;
 }
+/* BLinking */
+@-webkit-keyframes recBlink {
+    0% {background: darkred }
+    50% {background: #208aee}
+}
+.recBlink {
+    -webkit-animation: recBlink 1.7s step-end infinite;
+}
+@-webkit-keyframes playBlink {
+    0% {background: darkgreen }
+    50% {background: #208aee}
+}
+.playBlink {
+    -webkit-animation: playBlink .7s step-end infinite;
+}
 input[type=range] {
     -webkit-appearance: none;
     //background-color: silver;
@@ -93,22 +108,6 @@ h1 {
     display:none;
 }
 
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
 span {
     display: block;
     width: 300px;
