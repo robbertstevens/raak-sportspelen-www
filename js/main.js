@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		shapeToDraw = "",
 		dragging = false, drawingObject, moving = false,
 		materials = RaakStorage.getItem("field").materials,
+		pointerPos,
 		background = new Kinetic.Rect({
 		    x: 0,
 		    y: 0,
@@ -42,13 +43,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			stroke: 'black',
 			strokeWidth: 1 
 		}),
-		layer = new Kinetic.Layer();
+		layer = new Kinetic.Layer({
+			width: window.innerWidth-50
+		});
 	
 	background.on("touchstart", function(e) {
 		dragging = false;
-		for (var i = layer.children.length - 1; i >= 0; i--) {
-			    	layer.children[i].setStroke('black');
-		};
+		deSelect(layer);
 	});
 	
 	inventory.on("dbltap", function(e) {
@@ -57,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		} else {
 			inventoryTween.reverse();
 		}
-		console.log(inventoryTween);
 	});
 	
 	layer.add(background);
@@ -107,6 +107,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	}, false);
 
 	stage.on("touchstart", function(e) {
+		pointerPos = stage.getPointerPosition();
+
 		switch(selectedTool) {
 			case "line": lineStart(); break;
 			case "freeDraw": lineStart(); break;
@@ -197,22 +199,7 @@ function lineStart() {
         layer.drawScene();
     } else {
         var mousePos = stage.pointerPos;
-        //deSelect(layer);
-
-        //console.log(mousePos);
-        /*group = new Kinetic.Group({
-            x: mousePos.x,
-            y: mousePos.y,
-            draggable: true
-        });
-        console.log(group);
-        group.on("dragstart", function (evt) {
-            this.moveToTop();
-            document.body.style.cursor = 'move';
-        });
-        group.on("dragend", function (evt) {
-            document.body.style.cursor = 'default';
-        });*/
+        
         drawingObject = new Kinetic.Line({
             points: [mousePos.x, mousePos.y,mousePos.x, mousePos.y], //start point and end point are the same
             stroke: '#000',
@@ -237,7 +224,6 @@ function lineStart() {
             document.body.style.cursor = 'default';
         });
 
-       // group.add(drawingObject);
         layer.add(drawingObject);
         moving = true;
     }
@@ -286,7 +272,7 @@ function drawInventory() {
 		var offset = [imgObj[h].width / 2, imgObj[h].height / 2];
 		placement += imgObj[h].height /3;
 		var thingy = new Kinetic.Image({
-				x:10 + (offset[0] /3),
+				x: 10 + (offset[0] /3),
 				y: placement,
 				image: imgObj[h],
 				draggable: true,
@@ -296,35 +282,27 @@ function drawInventory() {
 			});
 			thingy.on("touchstart", function(e) {
 				var clone = this.clone(this.getAttrs());
-				deSelect(layer);
-				//for (var i = layer.children.length - 1; i >= 0; i--) {
-			    //	layer.children[i].disableStroke();
-				//};
-				this.enableStroke();
-				this.setStroke('red');
-				stage.draw();
+				//deSelect(layer);
+				//this.setPosition(stage.getPointerPosition().x+(this.getImage().width/2), stage.getPointerPosition().y+(this.getImage().height/2));
 				inventory.add(clone);
-				inventory.draw();
+				//stage.draw();
 
 			});
 			thingy.on("touchend", function(e) {
-				var clone = this.clone(this.getAttrs());
-				clone.setPosition(stage.pointerPos.x, stage.pointerPos.y);
-
-				layer.add(clone);
+				var xiets = stage.getPointerPosition().x - this.getAbsolutePosition().x; //Berekent de plek waar je op de afbeelding hebt geklikt
+				var yiets = stage.getPointerPosition().y - this.getAbsolutePosition().y; //Berekent de plek waar je op de afbeelding hebt geklikt
+				layer.add(createShape(this.getImage(), { 
+					x: stage.getPointerPosition().x - xiets, 
+					y: stage.getPointerPosition().y - yiets
+				}));
+							
 				this.remove();
-				selectedElement = clone;				
 				stage.draw();
-			})
-			thingy.on("dbltap", function(e) {
-				console.log(this)
-				this.rotateDeg(45);
-				stage.draw();
-			});	
+			});
 			thingy.on("dragstart", function(e){
 				selectedTool = null;
 				dragging = true;
-
+/*
 				this.off("touchstart");
 				this.on("touchstart", function(e){
 					//selectedElement = this;
@@ -335,16 +313,16 @@ function drawInventory() {
 					this.enableStroke();
 					this.setStroke('red');
 				});
-
+*/
 			});		
 			thingy.on("dragend", function(e){
-				console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
-				dragging = false;
+				//console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
+				/*dragging = false;
 				if(this.attrs.x > 0)
 				{
 					this.destroy();
 					stage.draw();
-				}
+				}*/
 			});
 				
 			inventory.add(thingy);
@@ -371,11 +349,31 @@ function updateTextInput(val) {
 
 function deSelect(layer) {
 	for (var i = layer.children.length - 1; i >= 0; i--) {			    	
-		if(layer.children[i].className == "Image")
-		{
+		if(layer.children[i].className == "Image") {
 			layer.children[i].disableStroke();			
-		}else{
+		} else{
 			layer.children[i].setStroke('black');
 		}			    	
 	};
+	stage.draw();
+}
+function createShape(img, pos) {
+	var s = new Kinetic.Image({
+		x: pos.x,
+		y: pos.y,
+		image: img,
+		scale:0.3,
+		draggable: true,
+		offset: [img.width / 2, img.height / 2]
+	});
+	s.on("touchstart", function(e) {
+		selectedElement = this;
+		deSelect(this.parent);
+	});
+	s.on("touchend", function(e) {
+		this.enableStroke();
+		this.setStroke("red");
+		stage.draw();
+	})
+	return s;
 }

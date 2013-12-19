@@ -24,7 +24,7 @@
     box-sizing: border-box;
 }
 .hide {
-    display: hidden;
+    display: none;
 }
 input[type=range] {
     -webkit-appearance: none;
