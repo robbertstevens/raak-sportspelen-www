@@ -452,6 +452,7 @@ function createShape(img, pos) {
 		offset: [img.width / 2, img.height / 2]
 	});
 	s.on("touchstart", function(e) {
+		console.log(this);
 		selectedElement = this;
 		deSelect(this.parent);
 	});
