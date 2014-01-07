@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		    y: 0,
 		    width: stage.getWidth(),
 		    height: stage.getHeight(),
-		    fill: "white"
+		    fill: "white",
+		    name: "background"
 		}),
 		inventory = new Kinetic.Layer({
 			x: window.innerWidth - 300,
@@ -198,11 +199,74 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		drawInventory();
 	}, false);
 	document.getElementById('saveButton').addEventListener("touchend", function(e) {
-		console.log(layer)
-		console.log(JSON.parse(JSON.stringify(layer)));
+		e.preventDefault();
+		var objects = {}, 
+			saveToStorage = (localStorage.savedCoachboards != null ) 
+							? JSON.parse(eval(localStorage.savedCoachboards)) 
+							: new Array(),
+			otntbs = layer.children; //Objects That Need To Be Saved  
+			name = (location.hash === "") ? prompt("Voer naam van dit coachboard in") : location.hash;
+
+		objects.name = name;
+		objects.elements = [];
+		location.hash = name;
+		console.log(location.hash)
+		for (var i = otntbs.length - 1; i >= 0; i--) {
+			var attrs = {};
+			if(otntbs[i].className == "Image") {
+				attrs.width = otntbs[i].getWidth();
+				attrs.height = otntbs[i].getHeight();
+				attrs.x = otntbs[i].getX();
+				attrs.y = otntbs[i].getY();
+				attrs.rotationDeg = otntbs[i].getRotationDeg();
+				attrs.offsetX = otntbs[i].getOffsetX();
+				attrs.offsetY = otntbs[i].getOffsetY();
+				attrs.src = otntbs[i].attrs.image.src;
+				attrs.name = "Image";
+
+			} else if( otntbs[i].className == "Line") {
+				attrs.points = otntbs[i].getPoints();
+				attrs.name = "Line"
+			} else {
+				attrs.x = otntbs[i].getX();
+				attrs.y = otntbs[i].getY();
+				attrs.width = otntbs[i].getWidth();
+				attrs.height = otntbs[i].getHeight();
+				attrs.name = "Rectangle";
+			}
+			if(otntbs[i].getName() != "background"){
+				objects.elements.push(attrs);
+			}
+		};
+			/*objects.name = navigator.notification.prompt(
+				"Voer de naam van dit coachboard in", 
+				function() {}, 
+				"Naam van het coachboard", 
+				["Opslaan", "Annuleer"], 
+				"Coachboard"
+				);*/
+		//console.log(objects);
+		if ( saveToStorage.length < 1) {
+			saveToStorage.push(objects);
+		}
+		for (var i = saveToStorage.length - 1; i >= 0; i--) {
+			if ( saveToStorage[i].name == name ) {
+				saveToStorage[i] = objects;
+				console.log("hijb estaant");
+			} else {
+				saveToStorage.push(objects);
+				console.log("hij bestaat niet")
+			}
+		};
+		console.log(saveToStorage);
+		//saveToStorage.push(objects);
+		//console.log(savedCb)
+		RaakStorage.storeItem("savedCoachboards", JSON.stringify(saveToStorage));
+		//console.log(JSON.parse(JSON.stringify(objects)));
 		/*
 			img attrs: width, height, x, y, src, scale, offset
 			line attrs: points, 
+			rect attrs: widht, height, x, y, 
 
 		*/
 	}, false);
