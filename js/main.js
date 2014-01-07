@@ -295,6 +295,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			case "rectangle": rectangleEnd(); break;
 		}
 		//console.log(e);
+
+
 	});
 
 	function rectangleStart() {
@@ -498,7 +500,73 @@ function drawInventory() {
 	}
 	//this.application.destroy.method(nuke);
 }
+	if(location.hash !== "")
+	{		
+		parseSavedBoards(window.location.href.split("#")[1]);
+	}
 
+	function parseSavedBoards(id)
+	{
+		console.log('parsing: ' + id)
+
+		var coachBoards = eval(RaakStorage.getItem('savedCoachboards'));
+		var loadBoard = null;
+		for (var i = coachBoards.length - 1; i >= 0; i--) {
+			if(coachBoards[i].name === id)
+			{
+				loadBoard = coachBoards[i].elements;				
+			}
+		};
+		if(loadBoard != null)
+		{			
+			for (var i = loadBoard.length - 1; i >= 0; i--) {
+				console.log(loadBoard[i].x);				
+				var imgObj = new Image();
+				var thingy = new Kinetic.Image({
+						x: loadBoard[i].x,
+						y: loadBoard[i].y,
+						image: imgObj,
+						draggable: true,
+						scale: 0.3,
+						offset: [loadBoard[i].width / 2, loadBoard[i].height / 2]						
+					});
+				imgObj.onload = function() {		
+					
+					thingy.on("touchstart", function(e) {
+						var clone = this.clone(this.getAttrs());
+						inventory.add(clone);
+					});
+					thingy.on("touchend", function(e) {
+						var xiets = stage.getPointerPosition().x - this.getAbsolutePosition().x; //Berekent de plek waar je op de afbeelding hebt geklikt
+						var yiets = stage.getPointerPosition().y - this.getAbsolutePosition().y; //Berekent de plek waar je op de afbeelding hebt geklikt
+						layer.add(createShape(this.getImage(), { 
+							x: stage.getPointerPosition().x - xiets, 
+							y: stage.getPointerPosition().y - yiets
+						}));	
+						this.remove();
+						stage.draw();
+					});
+					thingy.on("dragstart", function(e){
+						selectedTool = null;
+						dragging = true;
+					});		
+					thingy.on("dragend", function(e){
+						
+					});
+						
+					
+					
+				}
+
+				console.log(loadBoard[i].src);
+				imgObj.src = loadBoard[i].src;
+				layer.add(thingy);
+			};			
+			stage.draw();				
+		}else{
+			console.log('error');
+		}
+	}
 });
 
 function updateTextInput(val) {
