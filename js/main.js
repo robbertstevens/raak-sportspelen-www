@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     inventory.draw();
 	stage.add(inventory); 
-	console.log(layer);
 
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "line";
@@ -94,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         console.log(selectedTool);
     }, false);
 	document.getElementById('removeElementButton').addEventListener("touchend", function(e) {
-		var sele = null;
+		var sele = null; //
 		for (var j = startPositions.length - 1; j >= 0; j--) {
 			if(startPositions[j].id == selectedElement._id)
 			{
@@ -128,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 						id: layer.children[i]._id,
 						x: layer.children[i].getX(),
 						y: layer.children[i].getY(),
-						rot: layer.children[i].getRotation()
+						rot: layer.children[i].getRotationDeg()
 					});
 				}
 			};	
@@ -144,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				if(startPositions[c].id == layer.children[b]._id)
 				{
 					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);
+					//layer.children[b].setRotationDeg(0);		
 					layer.children[b].setRotationDeg(startPositions[c].rot);					
 				}
 			};
@@ -161,7 +161,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 								node = layer.children[a];
 							}					
 						};
-						node.setPosition(recMovement[i].x, recMovement[i].y);								
+						node.setPosition(recMovement[i].x, recMovement[i].y);
+						node.setRotationDeg(0);		
 						node.setRotationDeg(recMovement[i].rot);				
 						stage.draw();					
 						i++;
@@ -196,7 +197,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		inventory.draw();
 		drawInventory();
 	}, false);
+	document.getElementById('saveButton').addEventListener("touchend", function(e) {
+		console.log(layer)
+		console.log(JSON.parse(JSON.stringify(layer)));
+		/*
+			img attrs: width, height, x, y, src, scale, offset
+			line attrs: points, 
 
+		*/
+	}, false);
 	stage.on("touchstart", function(e) {
 		pointerPos = stage.getPointerPosition();
 
