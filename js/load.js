@@ -26,6 +26,22 @@ function addGames(){
 		game: "Softbal",
         color: "#00ff00",
         materials: [{
+            name: "honk",
+            url: './res/Softbal/honk.png'
+        },
+        {
+            name: "honk_geel",
+            url: './res/Software/honk_geel.png'
+        },
+        {
+            name: "honk_rood",
+            url: './res/Software/honk_rood.png'
+        },
+        {
+            name: "honkgroot",
+            url: './res/Software/honkgroot.png'
+        },
+        {
             name: "bank",
             url: './res/_algemeen/bank.png'
         },
@@ -38,14 +54,6 @@ function addGames(){
             url: './res/_algemeen/dubbelgroenkruisbal.png'
         },
         {
-            name: "gelerand",
-            url: './res/_algemeen/gelerand.png'
-        },
-        {
-            name: "grijzerand",
-            url: './res/_algemeen/grijzerand.png'
-        },
-        {
             name: "groenkruisbal",
             url: './res/_algemeen/groenkruisbal.png'
         },
@@ -54,24 +62,12 @@ function addGames(){
             url: './res/_algemeen/jongen.png'
         },
         {
-            name: "lopendcoach",
-            url: './res/_algemeen/lopendcoach.png'
-        },
-        {
-            name: "lopendjongen",
-            url: './res/_algemeen/lopendjongen.png'
-        },
-        {
             name: "meisje",
             url: './res/_algemeen/meisje.png'
         },
         {
             name: "trippelgroenkruisbal",
             url: './res/_algemeen/trippelgroenkruisbal.png'
-        },
-        {
-            name: "witterand",
-            url: './res/_algemeen/witterand.png'
         }]
 	});
 	spelen.push({
