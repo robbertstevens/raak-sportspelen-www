@@ -26,12 +26,52 @@ function addGames(){
 		game: "Softbal",
         color: "#00ff00",
         materials: [{
-            name: "doel",
+            name: "bank",
             url: './res/_algemeen/bank.png'
         },
         {
-            name: "bal",
+            name: "coach",
             url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "gelerand",
+            url: './res/_algemeen/gelerand.png'
+        },
+        {
+            name: "grijzerand",
+            url: './res/_algemeen/grijzerand.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "lopendcoach",
+            url: './res/_algemeen/lopendcoach.png'
+        },
+        {
+            name: "lopendjongen",
+            url: './res/_algemeen/lopendjongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
+        },
+        {
+            name: "witterand",
+            url: './res/_algemeen/witterand.png'
         }]
 	});
 	spelen.push({
