@@ -31,15 +31,15 @@ function addGames(){
         },
         {
             name: "honk_geel",
-            url: './res/Software/honk_geel.png'
+            url: './res/Softbal/honk_geel.png'
         },
         {
             name: "honk_rood",
-            url: './res/Software/honk_rood.png'
+            url: './res/Softbal/honk_rood.png'
         },
         {
             name: "honkgroot",
-            url: './res/Software/honkgroot.png'
+            url: './res/Softbal/honkgroot.png'
         },
         {
             name: "bank",
