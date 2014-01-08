@@ -74,84 +74,203 @@ function addGames(){
 		game: "Voetbal",
         color: "#00ff00",
         materials: [{
-            name: "doel",
-            url: "url/to/img"
+            name: "bal",
+            url: './res/voetbal/bal.png'
         },
         {
-            name: "bal",
-            url: "url/to/img"
-        }]
+            name: "goal_breed",
+            url: './res/voetbal/goal_breed.png'
+        },
+                {
+            name: "goal_smal",
+            url: './res/voetbal/goal_smal.png'
+        },
+                {
+            name: "pijl",
+            url: './res/voetbal/pijl.png'
+        },
+                {
+            name: "waggelpijl",
+            url: './res/voetbal/waggelpijl.png'
+        },
+        {
+            name: "bank",
+            url: './res/_algemeen/bank.png'
+        },
+        {
+            name: "coach",
+            url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
+        }]  
 	});
 	spelen.push({
 		game: "Handbal",
         color: "#0000ff",
         materials: [{
-            name: "doel",
-            url: "url/to/img"
+            name: "bank",
+            url: './res/_algemeen/bank.png'
         },
         {
-            name: "bal",
-            url: "url/to/img"
+            name: "coach",
+            url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
 	});
 	spelen.push({
 		game: "Volleybal",
         color: "#0000ff",
         materials: [{
-            name: "doel",
-            url: "url/to/img"
+            name: "bank",
+            url: './res/_algemeen/bank.png'
         },
         {
-            name: "bal",
-            url: "url/to/img"
+            name: "coach",
+            url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
 	});
 	spelen.push({
-		game: "Badminton",
-        color: "#0000ff",
-        materials: [{
-            name: "doel",
-            url: "url/to/img"
+            name: "bank",
+            url: './res/_algemeen/bank.png'
         },
         {
-            name: "bal",
-            url: "url/to/img"
+            name: "coach",
+            url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
 	});
 	spelen.push({
-		game: "Handbal",
-        color: "#0000ff",
-        materials: [{
-            name: "doel",
-            url: "url/to/img"
+            name: "bank",
+            url: './res/_algemeen/bank.png'
         },
         {
-            name: "bal",
-            url: "url/to/img"
+            name: "coach",
+            url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
 	});
 	spelen.push({
-		game: "Korfbal",
-        color: "#0000ff",
-        materials: [{
-            name: "doel",
-            url: "url/to/img"
+            name: "bank",
+            url: './res/_algemeen/bank.png'
         },
         {
-            name: "bal",
-            url: "url/to/img"
-        }]
-	});
-	spelen.push({
-		game: "Basketbal",
-        color: "#0000ff",
-        materials: [{
-            name: "doel",
-            url: "url/to/img"
+            name: "coach",
+            url: './res/_algemeen/coach.png'
         },
         {
-            name: "bal",
-            url: "url/to/img"
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
 	});
 	RaakStorage.storeItem("coachboard",spelen);
