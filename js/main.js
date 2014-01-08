@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 							? JSON.parse(eval(localStorage.savedCoachboards)) 
 							: new Array(),
 			otntbs = layer.children; //Objects That Need To Be Saved  
-			name = (location.hash === "") ? prompt("Voer naam van dit coachboard in") : location.hash;
+			name = (location.hash === "") ? prompt("Voer naam van dit coachboard in") : location.hash.replace("#", "");
 
 		objects.name = name;
 		objects.elements = [];
