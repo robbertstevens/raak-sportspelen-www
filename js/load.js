@@ -31,15 +31,15 @@ function addGames(){
         },
         {
             name: "honk_geel",
-            url: './res/Softbal/honk_geel.png'
+            url: './res/Software/honk_geel.png'
         },
         {
             name: "honk_rood",
-            url: './res/Softbal/honk_rood.png'
+            url: './res/Software/honk_rood.png'
         },
         {
             name: "honkgroot",
-            url: './res/Softbal/honkgroot.png'
+            url: './res/Software/honkgroot.png'
         },
         {
             name: "bank",
@@ -187,6 +187,9 @@ function addGames(){
         }]
 	});
 	spelen.push({
+		game: "Badminton",
+        color: "#0000ff",
+        materials: [{
             name: "bank",
             url: './res/_algemeen/bank.png'
         },
@@ -216,6 +219,9 @@ function addGames(){
         }]
 	});
 	spelen.push({
+		game: "Korfbal",
+        color: "#0000ff",
+        materials: [{
             name: "bank",
             url: './res/_algemeen/bank.png'
         },
@@ -245,6 +251,9 @@ function addGames(){
         }]
 	});
 	spelen.push({
+		game: "Basketbal",
+        color: "#0000ff",
+        materials: [{
             name: "bank",
             url: './res/_algemeen/bank.png'
         },
