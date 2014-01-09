@@ -47,7 +47,7 @@ function addGames(){
         },
         {
             name: "coach",
-            url: './res/_algemeen/coach.png'
+            url: './res/_algemeen/coach.png', scale: 0.3
         },
         {
             name: "dubbelgroenkruisbal",

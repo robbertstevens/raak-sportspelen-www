@@ -437,13 +437,13 @@ function drawInventory() {
 		imgObj[p] = new Image();
 		imgObj[p].onload = function() {
 		var offset = [imgObj[h].width / 2, imgObj[h].height / 2];
-		
+		console.log(materials[h].scale)
 		var thingy = new Kinetic.Image({
 				x: 10 + (offset[0] /3),
 				y: placement + (offset[1] / 3),
 				image: imgObj[h],
 				draggable: true,
-				scale: 0.3,
+				scale: (materials[h].hasOwnProperty("scale")) ? materials[h].scale : 1,
 				offset: [imgObj[h].width / 2, imgObj[h].height / 2]
 				//fill: "red"
 			});
