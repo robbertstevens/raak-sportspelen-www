@@ -75,23 +75,23 @@ function addGames(){
         color: "#00ff00",
         materials: [{
             name: "bal",
-            url: './res/voetbal/bal.png'
+            url: './res/Voetbal/bal.png'
         },
         {
             name: "goal_breed",
-            url: './res/voetbal/goal_breed.png'
+            url: './res/Voetbal/goal_breed.png'
         },
                 {
             name: "goal_smal",
-            url: './res/voetbal/goal_smal.png'
+            url: './res/Voetbal/goal_smal.png'
         },
                 {
             name: "pijl",
-            url: './res/voetbal/pijl.png'
+            url: './res/Voetbal/pijl.png'
         },
                 {
             name: "waggelpijl",
-            url: './res/voetbal/waggelpijl.png'
+            url: './res/Voetbal/waggelpijl.png'
         },
         {
             name: "bank",
