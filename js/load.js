@@ -21,9 +21,9 @@ function loadGames(){
 }
 
 function addGames(){
-	spelen = [];
-	spelen.push({
-		game: "Softbal",
+    spelen = [];
+    spelen.push({
+        game: "Softbal",
         color: "#00ff00",
         materials: [{
             name: "honk",
@@ -31,15 +31,15 @@ function addGames(){
         },
         {
             name: "honk_geel",
-            url: './res/Softbal/honk_geel.png'
+            url: './res/Software/honk_geel.png'
         },
         {
             name: "honk_rood",
-            url: './res/Softbal/honk_rood.png'
+            url: './res/Software/honk_rood.png'
         },
         {
             name: "honkgroot",
-            url: './res/Softbal/honkgroot.png'
+            url: './res/Software/honkgroot.png'
         },
         {
             name: "bank",
@@ -69,9 +69,9 @@ function addGames(){
             name: "trippelgroenkruisbal",
             url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
-	});
-	spelen.push({
-		game: "Voetbal",
+    });
+    spelen.push({
+        game: "Voetbal",
         color: "#00ff00",
         materials: [{
             name: "bal",
@@ -121,9 +121,133 @@ function addGames(){
             name: "trippelgroenkruisbal",
             url: './res/_algemeen/trippelgroenkruisbal.png'
         }]  
-	});
-	spelen.push({
-		game: "Handbal",
+    });
+    spelen.push({
+        game: "Handbal",
+        color: "#0000ff",
+        materials: [{
+            name: "bal",
+            url: './res/Handbal/bal.png'
+        },
+        {
+            name: "bruinemuur",
+            url: './res/Handbal/bruinemuur.png'
+        },
+        {
+            name: "goal",
+            url: './res/Handbal/goal.png'
+        },
+        {
+            name: "net2.0",
+            url: './res/Handbal/net2.0.png'
+        },
+        {
+            name: "pilon_opzijnkop",
+            url: './res/Handbal/pilon_opzijnkop.png'
+        },
+        {
+            name: "pilon_rechtop",
+            url: './res/Handbal/pilon_rechtop.png'
+        },
+        {
+            name: "bank",
+            url: './res/_algemeen/bank.png'
+        },
+        {
+            name: "coach",
+            url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
+        }]
+    });
+    spelen.push({
+        game: "Volleybal",
+        color: "#0000ff",
+        materials: [{
+            name: "bal",
+            url: './res/Volleybal/bal.png'
+        },
+        {
+            name: "bruinding",
+            url: './res/Volleybal/bruinding.png'
+        },
+        {
+            name: "groending",
+            url: './res/Volleybal/groending.png'
+        },
+        {
+            name: "korf",
+            url: './res/Volleybal/korf.png'
+        },
+        {
+            name: "lichtblauwvlaknet_groot",
+            url: './res/Volleybal/lichtblauwvlaknet_groot.png'
+        },
+        {
+            name: "net_groot",
+            url: './res/Volleybal/net_groot.png'
+        },
+        {
+            name: "net_klein",
+            url: './res/Volleybal/net_klein.png'
+        },
+        {
+            name: "roodmuurtje",
+            url: './res/Volleybal/roodmuurtje.png'
+        },
+        {
+            name: "volleybalgooimeneer",
+            url: './res/Volleybal/volleybalgooimeneer.png'
+        },
+        {
+            name: "bank",
+            url: './res/_algemeen/bank.png'
+        },
+        {
+            name: "coach",
+            url: './res/_algemeen/coach.png'
+        },
+        {
+            name: "dubbelgroenkruisbal",
+            url: './res/_algemeen/dubbelgroenkruisbal.png'
+        },
+        {
+            name: "groenkruisbal",
+            url: './res/_algemeen/groenkruisbal.png'
+        },
+        {
+            name: "jongen",
+            url: './res/_algemeen/jongen.png'
+        },
+        {
+            name: "meisje",
+            url: './res/_algemeen/meisje.png'
+        },
+        {
+            name: "trippelgroenkruisbal",
+            url: './res/_algemeen/trippelgroenkruisbal.png'
+        }]
+    });
+    spelen.push({
+        game: "Badminton",
         color: "#0000ff",
         materials: [{
             name: "bank",
@@ -153,11 +277,23 @@ function addGames(){
             name: "trippelgroenkruisbal",
             url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
-	});
-	spelen.push({
-		game: "Volleybal",
+    });
+    spelen.push({
+        game: "Korfbal",
         color: "#0000ff",
         materials: [{
+            name: "bal",
+            url: './res/Korfbal/bal.png'
+        },
+        {
+            name: "kast",
+            url: './res/Korfbal/kast.png'
+        },
+        {
+            name: "korf",
+            url: './res/Korfbal/korf.png'
+        },
+        {
             name: "bank",
             url: './res/_algemeen/bank.png'
         },
@@ -185,11 +321,19 @@ function addGames(){
             name: "trippelgroenkruisbal",
             url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
-	});
-	spelen.push({
-		game: "Badminton",
+    });
+    spelen.push({
+        game: "Basketbal",
         color: "#0000ff",
         materials: [{
+            name: "bal",
+            url: './res/Basketbal/bal.png'
+        },
+        {
+            name: "basket",
+            url: './res/Basketbal/basket.png'
+        },
+        {
             name: "bank",
             url: './res/_algemeen/bank.png'
         },
@@ -217,70 +361,6 @@ function addGames(){
             name: "trippelgroenkruisbal",
             url: './res/_algemeen/trippelgroenkruisbal.png'
         }]
-	});
-	spelen.push({
-		game: "Korfbal",
-        color: "#0000ff",
-        materials: [{
-            name: "bank",
-            url: './res/_algemeen/bank.png'
-        },
-        {
-            name: "coach",
-            url: './res/_algemeen/coach.png'
-        },
-        {
-            name: "dubbelgroenkruisbal",
-            url: './res/_algemeen/dubbelgroenkruisbal.png'
-        },
-        {
-            name: "groenkruisbal",
-            url: './res/_algemeen/groenkruisbal.png'
-        },
-        {
-            name: "jongen",
-            url: './res/_algemeen/jongen.png'
-        },
-        {
-            name: "meisje",
-            url: './res/_algemeen/meisje.png'
-        },
-        {
-            name: "trippelgroenkruisbal",
-            url: './res/_algemeen/trippelgroenkruisbal.png'
-        }]
-	});
-	spelen.push({
-		game: "Basketbal",
-        color: "#0000ff",
-        materials: [{
-            name: "bank",
-            url: './res/_algemeen/bank.png'
-        },
-        {
-            name: "coach",
-            url: './res/_algemeen/coach.png'
-        },
-        {
-            name: "dubbelgroenkruisbal",
-            url: './res/_algemeen/dubbelgroenkruisbal.png'
-        },
-        {
-            name: "groenkruisbal",
-            url: './res/_algemeen/groenkruisbal.png'
-        },
-        {
-            name: "jongen",
-            url: './res/_algemeen/jongen.png'
-        },
-        {
-            name: "meisje",
-            url: './res/_algemeen/meisje.png'
-        },
-        {
-            name: "trippelgroenkruisbal",
-            url: './res/_algemeen/trippelgroenkruisbal.png'
-        }]
-	});
-	RaakStorage.storeItem("coachboard",spelen);
+    });
+    RaakStorage.storeItem("coachboard",spelen);
 }
