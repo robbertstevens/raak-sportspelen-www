@@ -430,16 +430,17 @@ function lineEnd() {
 }
 function drawInventory() {
 	var imgObj = new Array();
-	var h = 0, placement = 10;
+	var h = 0, placement = 0;
+	console.log(materials);
 	for (var p = 0; p < materials.length; p = p+1)
 	{
 		imgObj[p] = new Image();
 		imgObj[p].onload = function() {
 		var offset = [imgObj[h].width / 2, imgObj[h].height / 2];
-		placement += imgObj[h].height /3;
+		
 		var thingy = new Kinetic.Image({
 				x: 10 + (offset[0] /3),
-				y: placement,
+				y: placement + (offset[1] / 3),
 				image: imgObj[h],
 				draggable: true,
 				scale: 0.3,
@@ -493,10 +494,14 @@ function drawInventory() {
 				
 			inventory.add(thingy);
 			stage.draw();
+				console.log("height: " + imgObj[h].height);
+				placement += imgObj[h].height / 3;
+				console.log(placement);		
 			h++;
 
 		}
-		imgObj[p].src = materials[p].url;
+		imgObj[p].src = materials[p].url;		
+		
 	}
 	//this.application.destroy.method(nuke);
 }

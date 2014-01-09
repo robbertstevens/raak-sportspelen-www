@@ -125,5 +125,6 @@ function createImage(loadBoard, inventory, stage, layer){
 		}
 	});
 	imgObj.src = loadBoard.src;
+	s.setRotationDeg(loadBoard.rotationDeg);
 	layer.add(s);
 }
