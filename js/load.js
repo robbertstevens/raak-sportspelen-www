@@ -43,6 +43,7 @@ function addGames(){
         },
         {
             name: "bank",
+            scale: 0.5;
             url: './res/_algemeen/bank.png'
         },
         {
@@ -59,10 +60,12 @@ function addGames(){
         },
         {
             name: "jongen",
+            scale: 0.5;
             url: './res/_algemeen/jongen.png'
         },
         {
             name: "meisje",
+            scale: 0.5;
             url: './res/_algemeen/meisje.png'
         },
         {
