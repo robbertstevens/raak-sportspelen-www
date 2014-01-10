@@ -182,7 +182,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			for (var c = startPositions.length - 1; c >= 0; c--) {
 				if(startPositions[c].id == layer.children[b]._id)
 				{
-					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);					
+					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);
+					layer.children[b].setRotationDeg(startPositions[c].rot)	
+					console.log(startPositions[c])				
 				}
 			};
 		};
