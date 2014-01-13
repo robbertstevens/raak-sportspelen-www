@@ -180,18 +180,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     
 	document.getElementById('resetButton').addEventListener("touchend", function(e) {
 		e.preventDefault();
-		recording = false;
-		for (var b = layer.children.length - 1; b >= 0; b--) {
-			for (var c = startPositions.length - 1; c >= 0; c--) {
-				if(startPositions[c].id == layer.children[b]._id)
-				{
-					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);
-					layer.children[b].setRotationDeg(startPositions[c].rot)	
-					console.log(startPositions[c])				
-				}
-			};
-		};
-		stage.draw();
+		resetPositions(layer);
 	}, false);
 
 	document.getElementById('clearButton').addEventListener("touchend", function(e) {
@@ -228,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				attrs.offsetY = otntbs[i].getOffsetY();
 				attrs.src = otntbs[i].attrs.image.src;
 				attrs.name = "Image";
+				attrs.id = otntbs[i]._id;
 
 			} else if( otntbs[i].className == "Line") {
 				attrs.points = otntbs[i].getPoints();
@@ -244,16 +234,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			}
 		};
 		objects.movements = recMovement;
+		objects.startPositions = startPositions;
 		if ( saveToStorage.length < 1) {
 			saveToStorage.push(objects);
 		}
+
 		for (var i = saveToStorage.length - 1; i >= 0; i--) {
 			if ( saveToStorage[i].name == name ) {
 				saveToStorage[i] = objects;
-				console.log("hijb estaant");
+				console.log("hij bestaat");
 			} else {
 				saveToStorage.push(objects);
 				console.log("hij bestaat niet")
+				break;
 			}
 		};
 		console.log(saveToStorage);
@@ -484,10 +477,26 @@ function drawInventory() {
 	if(location.hash !== "")
 	{		
 		parseSavedBoards(window.location.href.split("#")[1], inventory, stage, layer);
+		resetPositions(layer);
 	}
 
 	
 });
+
+function resetPositions(layer){
+	recording = false;
+		for (var b = layer.children.length - 1; b >= 0; b--) {
+			for (var c = startPositions.length - 1; c >= 0; c--) {
+				if(startPositions[c].id == layer.children[b]._id)
+				{
+					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);
+					layer.children[b].setRotationDeg(startPositions[c].rot)	
+					console.log(startPositions[c])				
+				}
+			};
+		};
+		stage.draw();
+}
 
 function updateTextInput(val) {
     if(selectedElement !=null)

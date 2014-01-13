@@ -6,10 +6,13 @@ function parseSavedBoards(id, inventory, stage, layer)
 		if(coachBoards[i].name === id)
 		{
 			loadBoard = coachBoards[i].elements;
-			recMovement = (coachBoards[i].hasOwnProperty("movements")) ? coachBoards[i].movements : [];				
+			recMovement = (coachBoards[i].hasOwnProperty("movements")) ? coachBoards[i].movements : [];
+			startPositions = (coachBoards[i].hasOwnProperty("startPositions")) ? coachBoards[i].startPositions : [];			
 		}
 	};
 	console.log(recMovement);
+	console.log(startPositions);
+	console.log(loadBoard);
 	if(loadBoard != null)
 	{			
 		for (var i = loadBoard.length - 1; i >= 0; i--) {
@@ -26,7 +29,8 @@ function parseSavedBoards(id, inventory, stage, layer)
 					break;		   				
 			}						
 		};			
-		stage.draw();				
+		stage.draw();
+		console.log(layer);				
 	}else{
 		console.log('error');
 	}
@@ -128,5 +132,6 @@ function createImage(loadBoard, inventory, stage, layer){
 	});
 	imgObj.src = loadBoard.src;
 	s.setRotationDeg(loadBoard.rotationDeg);
+	s._id = loadBoard.id;
 	layer.add(s);
 }
