@@ -96,13 +96,14 @@ function addGames(){
             name: "waggelpijl",
             url: './res/Voetbal/waggelpijl.png'
         },
-        {
+                {
             name: "bank",
+            scale: 0.3,
             url: './res/_algemeen/bank.png'
         },
         {
             name: "coach",
-            url: './res/_algemeen/coach.png'
+            url: './res/_algemeen/coach.png', scale: 0.3
         },
         {
             name: "dubbelgroenkruisbal",
@@ -114,16 +115,18 @@ function addGames(){
         },
         {
             name: "jongen",
+            scale: 0.3,
             url: './res/_algemeen/jongen.png'
         },
         {
             name: "meisje",
+            scale: 0.3,
             url: './res/_algemeen/meisje.png'
         },
         {
             name: "trippelgroenkruisbal",
             url: './res/_algemeen/trippelgroenkruisbal.png'
-        }]  
+        }]
     });
     spelen.push({
         game: "Handbal",
@@ -134,6 +137,7 @@ function addGames(){
         },
         {
             name: "bruinemuur",
+            scale: 0.3,
             url: './res/Handbal/bruinemuur.png'
         },
         {
@@ -142,6 +146,7 @@ function addGames(){
         },
         {
             name: "net2.0",
+            scale: 0.3,
             url: './res/Handbal/net2.0.png'
         },
         {
@@ -152,13 +157,14 @@ function addGames(){
             name: "pilon_rechtop",
             url: './res/Handbal/pilon_rechtop.png'
         },
-        {
+                {
             name: "bank",
+            scale: 0.3,
             url: './res/_algemeen/bank.png'
         },
         {
             name: "coach",
-            url: './res/_algemeen/coach.png'
+            url: './res/_algemeen/coach.png', scale: 0.3
         },
         {
             name: "dubbelgroenkruisbal",
@@ -170,10 +176,12 @@ function addGames(){
         },
         {
             name: "jongen",
+            scale: 0.3,
             url: './res/_algemeen/jongen.png'
         },
         {
             name: "meisje",
+            scale: 0.3,
             url: './res/_algemeen/meisje.png'
         },
         {
@@ -190,6 +198,7 @@ function addGames(){
         },
         {
             name: "bruinding",
+            scale: 0.3,
             url: './res/Volleybal/bruinding.png'
         },
         {
@@ -198,10 +207,12 @@ function addGames(){
         },
         {
             name: "korf",
+            scale: 0.3,
             url: './res/Volleybal/korf.png'
         },
         {
             name: "lichtblauwvlaknet_groot",
+            scale: 0.3,
             url: './res/Volleybal/lichtblauwvlaknet_groot.png'
         },
         {
@@ -220,13 +231,14 @@ function addGames(){
             name: "volleybalgooimeneer",
             url: './res/Volleybal/volleybalgooimeneer.png'
         },
-        {
+                {
             name: "bank",
+            scale: 0.3,
             url: './res/_algemeen/bank.png'
         },
         {
             name: "coach",
-            url: './res/_algemeen/coach.png'
+            url: './res/_algemeen/coach.png', scale: 0.3
         },
         {
             name: "dubbelgroenkruisbal",
@@ -238,10 +250,12 @@ function addGames(){
         },
         {
             name: "jongen",
+            scale: 0.3,
             url: './res/_algemeen/jongen.png'
         },
         {
             name: "meisje",
+            scale: 0.3,
             url: './res/_algemeen/meisje.png'
         },
         {
@@ -253,12 +267,43 @@ function addGames(){
         game: "Badminton",
         color: "#0000ff",
         materials: [{
+            name: "matje",
+            scale: 0.3,
+            url: './res/Badminton/matje.png'
+        },
+        {
+            name: "matje_met_geel",
+            scale: 0.3,
+            url: './res/Badminton/matje_met_geel.png'
+        },
+        {
+            name: "matje_met_rood",
+            scale: 0.3,
+            url: './res/Badminton/matje_met_rood.png'
+        },
+        {
+            name: "net1.0",
+            scale: 0.3,
+            url: './res/Badminton/net1.0.png'
+        },
+        {
+            name: "racket",
+            scale: 0.3,
+            url: './res/Badminton/racket.png'
+        },
+        {
+            name: "shuttle",
+            scale: 0.3,
+            url: './res/Badminton/shuttle.png'
+        },
+        {
             name: "bank",
+            scale: 0.3,
             url: './res/_algemeen/bank.png'
         },
         {
             name: "coach",
-            url: './res/_algemeen/coach.png'
+            url: './res/_algemeen/coach.png', scale: 0.3
         },
         {
             name: "dubbelgroenkruisbal",
@@ -270,10 +315,12 @@ function addGames(){
         },
         {
             name: "jongen",
+            scale: 0.3,
             url: './res/_algemeen/jongen.png'
         },
         {
             name: "meisje",
+            scale: 0.3,
             url: './res/_algemeen/meisje.png'
         },
         {
@@ -298,11 +345,12 @@ function addGames(){
         },
         {
             name: "bank",
+            scale: 0.3,
             url: './res/_algemeen/bank.png'
         },
         {
             name: "coach",
-            url: './res/_algemeen/coach.png'
+            url: './res/_algemeen/coach.png', scale: 0.3
         },
         {
             name: "dubbelgroenkruisbal",
@@ -314,10 +362,12 @@ function addGames(){
         },
         {
             name: "jongen",
+            scale: 0.3,
             url: './res/_algemeen/jongen.png'
         },
         {
             name: "meisje",
+            scale: 0.3,
             url: './res/_algemeen/meisje.png'
         },
         {
@@ -338,11 +388,12 @@ function addGames(){
         },
         {
             name: "bank",
+            scale: 0.3,
             url: './res/_algemeen/bank.png'
         },
         {
             name: "coach",
-            url: './res/_algemeen/coach.png'
+            url: './res/_algemeen/coach.png', scale: 0.3
         },
         {
             name: "dubbelgroenkruisbal",
@@ -354,10 +405,12 @@ function addGames(){
         },
         {
             name: "jongen",
+            scale: 0.3,
             url: './res/_algemeen/jongen.png'
         },
         {
             name: "meisje",
+            scale: 0.3,
             url: './res/_algemeen/meisje.png'
         },
         {
