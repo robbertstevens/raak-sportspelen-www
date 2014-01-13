@@ -5,9 +5,11 @@ function parseSavedBoards(id, inventory, stage, layer)
 	for (var i = coachBoards.length - 1; i >= 0; i--) {
 		if(coachBoards[i].name === id)
 		{
-			loadBoard = coachBoards[i].elements;				
+			loadBoard = coachBoards[i].elements;
+			recMovement = (coachBoards[i].hasOwnProperty("movements")) ? coachBoards[i].movements : [];				
 		}
 	};
+	console.log(recMovement);
 	if(loadBoard != null)
 	{			
 		for (var i = loadBoard.length - 1; i >= 0; i--) {

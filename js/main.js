@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	}, false);
 
 	document.getElementById('recordButton').addEventListener("touchend", function(e) {
+		e.preventDefault();
 		recording = !recording;
 		this.classList.toggle("recBlink");
 		if (recording) {
@@ -136,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		}
 	}, false);
 	document.getElementById('playButton').addEventListener("touchend", function(e) {
+		e.preventDefault();
 		recording = false;
 		document.getElementById('recordButton').classList.remove("recBlink");
 		this.classList.toggle("playBlink");
@@ -177,6 +179,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	}, false);
     
 	document.getElementById('resetButton').addEventListener("touchend", function(e) {
+		e.preventDefault();
 		recording = false;
 		for (var b = layer.children.length - 1; b >= 0; b--) {
 			for (var c = startPositions.length - 1; c >= 0; c--) {
@@ -240,14 +243,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				objects.elements.push(attrs);
 			}
 		};
-			/*objects.name = navigator.notification.prompt(
-				"Voer de naam van dit coachboard in", 
-				function() {}, 
-				"Naam van het coachboard", 
-				["Opslaan", "Annuleer"], 
-				"Coachboard"
-				);*/
-		//console.log(objects);
+		objects.movements = recMovement;
 		if ( saveToStorage.length < 1) {
 			saveToStorage.push(objects);
 		}
@@ -263,6 +259,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		console.log(saveToStorage);
 		//saveToStorage.push(objects);
 		//console.log(savedCb)
+
 		RaakStorage.storeItem("savedCoachboards", JSON.stringify(saveToStorage));
 		//console.log(JSON.parse(JSON.stringify(objects)));
 		/*
@@ -433,13 +430,13 @@ function lineEnd() {
 function drawInventory() {
 	var imgObj = new Array();
 	var h = 0, placement = 0;
-	console.log(materials);
+	
 	for (var p = 0; p < materials.length; p = p+1)
 	{
 		imgObj[p] = new Image();
 		imgObj[p].onload = function() {
 		var offset = [imgObj[h].width / 2, imgObj[h].height / 2];
-		console.log(materials[h].scale)
+		
 		var thingy = new Kinetic.Image({
 				x: 10 + (offset[0] /3),
 				y: placement + (offset[1] / 3),
@@ -451,10 +448,7 @@ function drawInventory() {
 			});
 			thingy.on("touchstart", function(e) {
 				var clone = this.clone(this.getAttrs());
-				//deSelect(layer);
-				//this.setPosition(stage.getPointerPosition().x+(this.getImage().width/2), stage.getPointerPosition().y+(this.getImage().height/2));
 				inventory.add(clone);
-				//stage.draw();
 
 			});
 			thingy.on("touchend", function(e) {
@@ -471,34 +465,14 @@ function drawInventory() {
 			thingy.on("dragstart", function(e){
 				selectedTool = null;
 				dragging = true;
-/*
-				this.off("touchstart");
-				this.on("touchstart", function(e){
-					//selectedElement = this;
-					deSelect(layer);
-					//for (var i = layer.children.length - 1; i >= 0; i--) {
-			   		//	layer.children[i].disableStroke();
-					//};
-					this.enableStroke();
-					this.setStroke('red');
-				});
-*/
+
 			});		
-			thingy.on("dragend", function(e){
-				//console.log('x: ' + this.attrs.x + ' y: ' + this.attrs.y);
-				/*dragging = false;
-				if(this.attrs.x > 0)
-				{
-					this.destroy();
-					stage.draw();
-				}*/
-			});
-				
+		
 			inventory.add(thingy);
 			stage.draw();
-				console.log("height: " + imgObj[h].height);
-				placement += imgObj[h].height / 3;
-				console.log(placement);		
+				
+				placement += imgObj[h].height / 2;
+					
 			h++;
 
 		}
