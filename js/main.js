@@ -205,7 +205,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	}, false);
 	document.getElementById('saveButton').addEventListener("touchend", function(e) {
 		e.preventDefault();
-		var objects = {}, 
+		setTimeout(function(){
+            var objects = {}, 
 			saveToStorage = (localStorage.savedCoachboards != null ) 
 							? JSON.parse(eval(localStorage.savedCoachboards)) 
 							: new Array(),
@@ -272,6 +273,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			rect attrs: widht, height, x, y, 
 
 		*/
+        }, 0);
+		
 	}, false);
 	stage.on("touchstart", function(e) {
 		pointerPos = stage.getPointerPosition();
