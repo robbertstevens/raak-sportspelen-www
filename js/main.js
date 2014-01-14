@@ -183,6 +183,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		resetPositions(layer);
 	}, false);
 
+	document.getElementById('backButton').addEventListener("touchend", function(e) {
+		e.preventDefault();
+		if(location.hash === "")
+		{
+			window.location = "spelselecteren.html"; 
+		}else
+		{
+			window.location = "spelladen.html"; 
+		}
+	}, false);
+
 	document.getElementById('clearButton').addEventListener("touchend", function(e) {
 		layer.removeChildren();
 		inventory.removeChildren();
