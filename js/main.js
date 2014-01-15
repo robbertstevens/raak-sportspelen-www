@@ -436,29 +436,30 @@ function lineEnd() {
 }
 function drawInventory() {
 	var imgObj = new Array();
-	var h = 0, placement = 0;
-	
-	for (var p = 0; p < materials.length; p = p+1)
+	var h = 0, placement = 10;
+	for (var p = 0; p < materials.length; p++)
 	{
+
 		imgObj[p] = new Image();
+		imgObj[p].src = materials[p].url;
 		imgObj[p].onload = function() {
-		var offset = [imgObj[h].width / 2, imgObj[h].height / 2];
-		
-		var thingy = new Kinetic.Image({
-				x: 10 + (offset[0] /3),
-				y: placement + (offset[1] / 3),
+			var offset = [imgObj[h].width / 2, imgObj[h].height / 2];
+			var scale = (materials[h].hasOwnProperty("scale")) ? materials[h].scale : 1,
+				scaleNext = (materials[h+1].hasOwnProperty("scale")) ? materials[h+1].scale : 1;
+			console.log(placement)
+			mat = new Kinetic.Image({
+				x: 10 + offset[0] * scale,
+				y: placement,
 				image: imgObj[h],
 				draggable: true,
-				scale: (materials[h].hasOwnProperty("scale")) ? materials[h].scale : 1,
+				scale: scale,
 				offset: [imgObj[h].width / 2, imgObj[h].height / 2]
-				//fill: "red"
 			});
-			thingy.on("touchstart", function(e) {
+			mat.on("touchstart", function(e) {
 				var clone = this.clone(this.getAttrs());
 				inventory.add(clone);
-
 			});
-			thingy.on("touchend", function(e) {
+			mat.on("touchend", function(e) {
 				var xiets = stage.getPointerPosition().x - this.getAbsolutePosition().x; //Berekent de plek waar je op de afbeelding hebt geklikt
 				var yiets = stage.getPointerPosition().y - this.getAbsolutePosition().y; //Berekent de plek waar je op de afbeelding hebt geklikt
 				layer.add(createShape(this.getImage(), { 
@@ -469,23 +470,22 @@ function drawInventory() {
 				this.remove();
 				stage.draw();
 			});
-			thingy.on("dragstart", function(e){
+			mat.on("dragstart", function(e) {
 				selectedTool = null;
 				dragging = true;
+			});
+			inventory.add(mat);
+			placement += 5 + (imgObj[h].height / 2 * scale) + (imgObj[h + 1].height / 2 * scaleNext); 
 
-			});		
-		
-			inventory.add(thingy);
-			stage.draw();
-				
-				placement += imgObj[h].height / 2;
-					
 			h++;
 
+		stage.draw();
 		}
 		imgObj[p].src = materials[p].url;		
-		
 	}
+	//console.log(imgObj);
+	
+	stage.draw();
 	//this.application.destroy.method(nuke);
 }
 	if(location.hash !== "")
