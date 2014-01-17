@@ -464,7 +464,8 @@ function drawInventory() {
 				var yiets = stage.getPointerPosition().y - this.getAbsolutePosition().y; //Berekent de plek waar je op de afbeelding hebt geklikt
 				layer.add(createShape(this.getImage(), { 
 					x: stage.getPointerPosition().x - xiets, 
-					y: stage.getPointerPosition().y - yiets
+					y: stage.getPointerPosition().y - yiets,
+					scale : this.getScale()
 				}));
 							
 				this.remove();
@@ -537,7 +538,7 @@ function createShape(img, pos) {
 		x: pos.x,
 		y: pos.y,
 		image: img,
-		scale:0.3,
+		scale:pos.scale,
 		draggable: true,
 		offset: [img.width / 2, img.height / 2]
 	});
