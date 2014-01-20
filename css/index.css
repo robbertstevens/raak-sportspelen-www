@@ -174,7 +174,18 @@ a.tapped {
     bottom: 0; 
     text-align: center;
     left: 50%;
-    margin-left: -50px;
+    margin-left: -70px;
+    width: 100px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.help {
+    position: absolute; 
+    bottom: 0; 
+    text-align: center;
+    left: 50%;
+    margin-left: -5px;
     width: 100px;
     margin-bottom: 15px;
     font-size: 20px;
