@@ -1,3 +1,6 @@
+// Authors : Robbert Stevens S1050385, Michael Stevens S1049275, Tim Lagerburg S1045334 ISM5WTb
+
+//Bij laden van pagina worden de spelsoorten samen met hun materialen toegevoegd aan localstorage.
 document.addEventListener("DOMContentLoaded", function (e) {
 	addGames();
 	loadGames();
@@ -11,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	});
 });
 
+//functie om de dropdown list te populaten.
 function loadGames(){
 	var coachboard = RaakStorage.getItem("coachboard");
 	
@@ -20,6 +24,7 @@ function loadGames(){
 	}
 }
 
+//functie waar de spelsoorten en hun bijbehorende attributen worden toegevoegd aan spelen array.
 function addGames(){
     spelen = [];
     spelen.push({

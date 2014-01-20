@@ -1,4 +1,6 @@
-/// <reference path="references.ts" />
+// Authors : Robbert Stevens S1050385, Michael Stevens S1049275, Tim Lagerburg S1045334 ISM5WTb
+
+//methoden voor het opslaan in localstorage.
 var RaakStorage = (function () {
     function RaakStorage() {
     }

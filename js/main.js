@@ -1,11 +1,12 @@
+// Authors : Robbert Stevens S1050385, Michael Stevens S1049275, Tim Lagerburg S1045334 ISM5WTb
+
 var selectedElement = null,
 	stage,
 	recording = false,
 	recMovement = [],
 	startPositions = [];
-document.addEventListener("DOMContentLoaded", function (e) {
-	//KineticJS Draw Line
-	stage = new Kinetic.Stage({
+document.addEventListener("DOMContentLoaded", function (e) {	
+	stage = new Kinetic.Stage({ // parent stage waar de layers aan toegevoegd worden.
 	        container: 'playfield',
 	        width: window.innerWidth,
 	        height: window.innerHeight -45
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		dragging = false, drawingObject, moving = false,
 		materials = RaakStorage.getItem("field").materials,
 		pointerPos,
-		background = new Kinetic.Rect({
+		background = new Kinetic.Rect({ // Achtergrond welke aan de teken layer toegevoegd wordt.
 		    x: 0,
 		    y: 0,
 		    width: stage.getWidth(),
@@ -24,21 +25,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		    fill: "white",
 		    name: "background"
 		}),
-		inventory = new Kinetic.Layer({
+		inventory = new Kinetic.Layer({ // Inventory layer welke de materialen bevat.
 			x: window.innerWidth - 300,
 			y: 0,
 			width: 300,
 			height: window.innerHeight,
 			// other properties... 
 		}),
-		inventoryTween = new Kinetic.Tween({
+		inventoryTween = new Kinetic.Tween({ // Een tween welke gebruikt wordt om de inventory layer te animeren.
 			node: inventory,
 			duration: 1,
 			x: window.innerWidth-50,
 			y: 0,
 			easing: Kinetic.Easings["EaseInOut"]
 		}),
-		inventoryBg = new Kinetic.Rect({
+		inventoryBg = new Kinetic.Rect({ // Achtergrond voor de inventory.
 			x: 0,
 			y: 0,
 			width: inventory.getWidth(),
@@ -47,16 +48,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			stroke: 'black',
 			strokeWidth: 1 
 		}),
-		layer = new Kinetic.Layer({
+		layer = new Kinetic.Layer({ // Teken layer
 			width: window.innerWidth-50
 		});
 	
-	background.on("touchstart", function(e) {
+	background.on("touchstart", function(e) {// Touchstart event om selectie van elementen te clearen.
 		dragging = false;
 		deSelect(layer);
 	});
 	
-	inventory.on("dbltap", function(e) {
+	inventory.on("dbltap", function(e) {// Double tap event om de inventory te verbergen.
 		if ( inventoryTween.tween.getPosition() == 0) {
 			inventoryTween.tween.play();
 		} else {
@@ -73,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     inventory.draw();
 	stage.add(inventory); 
 
+	// Event listeners voor de knoppen.
 	document.getElementById('fixedLineButton').addEventListener("touchend", function(e) {
 		selectedTool = "line";
 		stage.draw();
@@ -95,19 +97,20 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }, false);
 	document.getElementById('removeElementButton').addEventListener("touchend", function(e) {
 		var sele = null; //
-		for (var j = startPositions.length - 1; j >= 0; j--) {
+		for (var j = startPositions.length - 1; j >= 0; j--) { // Loop om het geselecteerde element uit de startpositions(wordt gebruikt bij opnemen) array op te halen
 			if(startPositions[j].id == selectedElement._id)
 			{
 				sele = startPositions[j];
 			}
 		};
 
+		//verwijderen van het element uit startpositions array.
 		var i = startPositions.indexOf(sele);		
 		if(i != -1){
 			startPositions.splice(i, 1);// delete entry in start positions
 		}
 
-		for(var k = recMovement.length - 1; k >= 0; k--) {// delete entries in recorded movement
+		for(var k = recMovement.length - 1; k >= 0; k--) {// Element uit de recMovement(opname) array verwijderen
 		    if(recMovement[k].id === selectedElement._id) {
 		       recMovement.splice(k, 1);
 		    }
@@ -117,13 +120,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		this.classList.add("hide");
 		stage.draw();
 	}, false);
-
 	document.getElementById('recordButton').addEventListener("touchend", function(e) {
 		e.preventDefault();
 		recording = !recording;
 		this.classList.toggle("recBlink");
 		if (recording) {
-			for (var i = layer.children.length - 1; i >= 0; i--) {
+			for (var i = layer.children.length - 1; i >= 0; i--) {// startposities van alle images opslaan.
 				if(layer.children[i].className == "Image"){
 					startPositions.push({
 						id: layer.children[i]._id,
@@ -132,8 +134,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 						rot: layer.children[i].getRotationDeg()
 					});
 				}
-			};	
-			console.log(startPositions);	
+			};				
 		}
 	}, false);
 	document.getElementById('playButton').addEventListener("touchend", function(e) {
@@ -141,9 +142,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		recording = false;
 		document.getElementById('recordButton').classList.remove("recBlink");
 		this.classList.toggle("playBlink");
-		for (var b = layer.children.length - 1; b >= 0; b--) {
+		for (var b = layer.children.length - 1; b >= 0; b--) {// 
 			for (var c = startPositions.length - 1; c >= 0; c--) {
-				if(startPositions[c].id == layer.children[b]._id)
+				if(startPositions[c].id == layer.children[b]._id)// opzoeken van het element in de layer om de startposities terug te zetten.
 				{
 					layer.children[b].setPosition(startPositions[c].x, startPositions[c].y);
 					//layer.children[b].setRotationDeg(0);		
@@ -154,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		stage.draw();
 		var i = 0;
 		
+		// interval om de opname af te spelen
 		var move = setInterval(function() {
 					if(i < recMovement.length)
 					{
@@ -168,8 +170,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 						node.setRotationDeg(0);		
 						node.setRotationDeg(recMovement[i].rot);				
 						stage.draw();					
-						i++;
-						console.log(a);
+						i++;						
 					}else{
 						clearInterval(move);
 						document.getElementById('playButton').classList.toggle("playBlink");
@@ -182,10 +183,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		e.preventDefault();
 		resetPositions(layer);
 	}, false);
-
 	document.getElementById('backButton').addEventListener("touchend", function(e) {
 		e.preventDefault();
-		if(location.hash === "")
+		if(location.hash === "")// kijk of er een coachbord in was geladen of dat er een nieuwe werd gemaakt.
 		{
 			window.location = "spelselecteren.html"; 
 		}else
@@ -193,7 +193,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			window.location = "spelladen.html"; 
 		}
 	}, false);
-
 	document.getElementById('clearButton').addEventListener("touchend", function(e) {
 		layer.removeChildren();
 		inventory.removeChildren();
@@ -205,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	}, false);
 	document.getElementById('saveButton').addEventListener("touchend", function(e) {
 		e.preventDefault();
-		setTimeout(function(){
+		setTimeout(function(){// save gedeelte binnen een timeout om een bug op de iPad te voorkomen waarbij de prompt telkens bij elke button press naar voren komt.
             var objects = {}, 
 			saveToStorage = (localStorage.savedCoachboards != null ) 
 							? JSON.parse(eval(localStorage.savedCoachboards)) 
@@ -217,9 +216,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		objects.elements = [];
 		location.hash = name;
 		console.log(location.hash)
-		for (var i = otntbs.length - 1; i >= 0; i--) {
+		for (var i = otntbs.length - 1; i >= 0; i--) { //Door de items welke gesaved moeten worden loopen
 			var attrs = {};
-			if(otntbs[i].className == "Image") {
+			if(otntbs[i].className == "Image") {// Save attrs voor een image
 				attrs.width = otntbs[i].getWidth();
 				attrs.height = otntbs[i].getHeight();
 				attrs.x = otntbs[i].getX();
@@ -231,10 +230,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				attrs.name = "Image";
 				attrs.id = otntbs[i]._id;
 
-			} else if( otntbs[i].className == "Line") {
+			} else if( otntbs[i].className == "Line") {// Save attrs voor een line
 				attrs.points = otntbs[i].getPoints();
 				attrs.name = "Line"
-			} else {
+			} else {// Save attrs voor een rectangle
 				attrs.x = otntbs[i].getX();
 				attrs.y = otntbs[i].getY();
 				attrs.width = otntbs[i].getWidth();
@@ -251,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			saveToStorage.push(objects);
 		}
 
-		for (var i = saveToStorage.length - 1; i >= 0; i--) {
+		for (var i = saveToStorage.length - 1; i >= 0; i--) {// kijken of het spelbord al bestaat om te overwriten bij save.
 			if ( saveToStorage[i].name == name ) {
 				saveToStorage[i] = objects;
 				console.log("hij bestaat");
@@ -305,6 +304,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 	});
 
+	//functie om een rectangle te tekenen.
 	function rectangleStart() {
 		if(!dragging){
 			if (moving) {
@@ -352,6 +352,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 		}
 	}
 
+//functie om een rectangle te tekenen aan de hand van de pointer // realtime tekenen.
 function rectangleMove() {
 	if (!moving) return;
 	rect.setWidth(stage.pointerPos.x - rect.attrs.x);
@@ -359,12 +360,14 @@ function rectangleMove() {
 	layer.drawScene();
 }
 
+//functie om te stoppen met het tekenen van een rectangle.
 function rectangleEnd() {
 	moving = false;
 	layer.draw();
 	layer.off('touchstart touchmove touchend');
 }
 
+//functie om een lijn te tekenen.
 function lineStart() {
 	if ( moving ) {
         moving = false;
@@ -401,6 +404,7 @@ function lineStart() {
     }
 }
 
+//functie om een freeline te tekenen.
 function freeLineMove() {
 	if (moving) {
         var mousePos = stage.pointerPos;
@@ -414,6 +418,7 @@ function freeLineMove() {
     }
 }
 
+//functie om een fixed line te tekenen tussen 2 punten.
 function fixedLineMove() {
 	if (moving) {
         var mousePos = stage.pointerPos;
@@ -428,12 +433,15 @@ function fixedLineMove() {
     }
 }
 
+//functie om 
 function lineEnd() {
 	moving = false;
 	drawingObject = null;
 	layer.draw();
 	layer.off('touchstart touchmove touchend');
 }
+
+//functie om de inventory te tekenen met de materialen.
 function drawInventory() {
 	var imgObj = new Array();
 	var h = 0, placement = 10;
@@ -455,11 +463,11 @@ function drawInventory() {
 				scale: scale,
 				offset: [imgObj[h].width / 2, imgObj[h].height / 2]
 			});
-			mat.on("touchstart", function(e) {
+			mat.on("touchstart", function(e) {// op touchstart wordt er een clone aangemaakt en op dezelfde plaats terug gezet zodat het geselecteerde materiaal versleept kan worden.
 				var clone = this.clone(this.getAttrs());
 				inventory.add(clone);
 			});
-			mat.on("touchend", function(e) {
+			mat.on("touchend", function(e) {// op touchend wordt de image opnieuw aangemaakt en op de layer geplaatst. Huidige element wordt verwijderd.
 				var xiets = stage.getPointerPosition().x - this.getAbsolutePosition().x; //Berekent de plek waar je op de afbeelding hebt geklikt
 				var yiets = stage.getPointerPosition().y - this.getAbsolutePosition().y; //Berekent de plek waar je op de afbeelding hebt geklikt
 				layer.add(createShape(this.getImage(), { 
@@ -489,7 +497,7 @@ function drawInventory() {
 	stage.draw();
 	//this.application.destroy.method(nuke);
 }
-	if(location.hash !== "")
+	if(location.hash !== "")// als er een bestaand coachboard wordt geselecteerd wordt deze ingeladen.
 	{		
 		parseSavedBoards(window.location.href.split("#")[1], inventory, stage, layer);
 		resetPositions(layer);
@@ -498,6 +506,7 @@ function drawInventory() {
 	
 });
 
+// functie om de posities van de materialen te resetten (opname functionaliteit)
 function resetPositions(layer){
 	recording = false;
 		for (var b = layer.children.length - 1; b >= 0; b--) {
@@ -513,6 +522,7 @@ function resetPositions(layer){
 		stage.draw();
 }
 
+//functie om de rotatie in te stellen van het geselecteerde element.
 function updateTextInput(val) {
     if(selectedElement !=null)
     {      	
@@ -523,6 +533,7 @@ function updateTextInput(val) {
     }
 }
 
+//functie voor de selectie.
 function deSelect(layer) {
 	for (var i = layer.children.length - 1; i >= 0; i--) {			    	
 		if(layer.children[i].className == "Image") {
@@ -533,6 +544,8 @@ function deSelect(layer) {
 	};
 	stage.draw();
 }
+
+//functie om een image aan te maken met een dragmove event voor opnames. Deze wordt gebruikt wanneer een material vanuit de inventory wordt gesleept
 function createShape(img, pos) {
 	var s = new Kinetic.Image({
 		x: pos.x,

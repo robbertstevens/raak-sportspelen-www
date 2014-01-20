@@ -1,3 +1,6 @@
+// Authors : Robbert Stevens S1050385, Michael Stevens S1049275, Tim Lagerburg S1045334 ISM5WTb
+
+//functie om een opgeslagen coachboard in te laden.
 function parseSavedBoards(id, inventory, stage, layer)
 {
 	var coachBoards = eval(RaakStorage.getItem('savedCoachboards'));	
@@ -9,10 +12,7 @@ function parseSavedBoards(id, inventory, stage, layer)
 			recMovement = (coachBoards[i].hasOwnProperty("movements")) ? coachBoards[i].movements : [];
 			startPositions = (coachBoards[i].hasOwnProperty("startPositions")) ? coachBoards[i].startPositions : [];			
 		}
-	};
-	console.log(recMovement);
-	console.log(startPositions);
-	console.log(loadBoard);
+	};	
 	if(loadBoard != null)
 	{			
 		for (var i = loadBoard.length - 1; i >= 0; i--) {
@@ -29,12 +29,13 @@ function parseSavedBoards(id, inventory, stage, layer)
 					break;		   				
 			}						
 		};			
-		stage.draw();
-		console.log(layer);				
+		stage.draw();			
 	}else{
-		console.log('error');
+		
 	}
 }
+
+//functie om een rectangle aan te maken.
 function createRectangle(loadBoard, layer, stage){
 	rect = new Kinetic.Rect({
 		x: loadBoard.x,
@@ -72,6 +73,7 @@ function createRectangle(loadBoard, layer, stage){
 	stage.draw();	
 }
 
+//functie om een line aan te maken (zowel free als fixed)
 function createLine(loadBoard, layer, stage){	
 	drawingObject = new Kinetic.Line({
          points: loadBoard.points, //start point and end point are the same
@@ -99,6 +101,7 @@ function createLine(loadBoard, layer, stage){
 	stage.draw();
 }	
 
+//functie om een image aan te maken.
 function createImage(loadBoard, inventory, stage, layer){	
 	var imgObj = new Image();
 	var s = new Kinetic.Image({

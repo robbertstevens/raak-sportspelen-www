@@ -1,3 +1,6 @@
+// Authors : Robbert Stevens S1050385, Michael Stevens S1049275, Tim Lagerburg S1045334 ISM5WTb
+
+//onload van pagina wordt de event listener op de nextbutton toegevoegd om de url voor de volgende pagina juist te maken zodat het juiste coachboard wordt ingeladen.
 document.addEventListener("DOMContentLoaded", function (e) {
 	var cont = document.getElementById('nextButton');
 	cont.addEventListener('touchend', function(e){
@@ -8,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	});
 });
 
+//functie om de dropdown list te populaten.
 function loadStates(){
 	console.log('Populating list.....');
 
